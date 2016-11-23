@@ -9,4 +9,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>imagedir</param-name>
+    <param-value>D:\workspace\eclipse\Image</param-value>
+  </context-param>
 </web-app>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<database>
+	<driver>com.mysql.jdbc.Driver</driver>
+	<host>localhost</host>
+	<port>3306</port>
+	<username>groupnine</username>
+	<password>groupnine</password>
+	<name>OSS</name>
+</database>
