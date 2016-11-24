@@ -10,18 +10,21 @@ import org.junit.Test;
 import com.groupnine.oss.util.DBUtil;
 
 public class DemoDao {
+    private Connection connection = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
+
     @Test
     public void getOrderId() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
 
         try {
             connection = DBUtil.getConnection();
 
-            preparedStatement = connection.prepareStatement("select * from `order`;");
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection
+                    .prepareStatement("select * from `order` where order_id = ?;");
+            preparedStatement.setLong(1, 1);
 
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 System.out.println(resultSet.getLong("order_id"));
             }
@@ -29,20 +32,24 @@ public class DemoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
+            closeAll();
+        }
+    }
 
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+    private void closeAll() {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
             }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
