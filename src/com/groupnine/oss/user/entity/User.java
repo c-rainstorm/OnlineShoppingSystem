@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class User {
     private int userId;
+    private String registrationId;
     private String username;
     private String password;
     private String nickname;
@@ -18,6 +19,14 @@ public class User {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getRegistrationId() {
+        return registrationId;
+    }
+
+    public void setRegistrationId(String registrationId) {
+        this.registrationId = registrationId;
     }
 
     public String getUsername() {

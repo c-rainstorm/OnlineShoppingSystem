@@ -3,10 +3,19 @@ package com.groupnine.oss.user.entity;
 import com.groupnine.oss.seller.entity.Goods;
 
 public class GoodsInShoppingCart {
+    private int id;
     private int userId;
     private Goods goods;
     private int attributeId;
     private int goodsNum;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getUserId() {
         return userId;
