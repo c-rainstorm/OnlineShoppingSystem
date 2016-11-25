@@ -25,39 +25,54 @@ public final class LoginFilter implements Filter {
         HttpServletResponse response2 = (HttpServletResponse) response;
 
         HttpSession session = request2.getSession();
-        if (session.getAttribute("userLoginStatus") == null)
-            session.setAttribute("userLoginStatus", "setAttr");
-        if (session.getAttribute("adminLoginStatus") == null)
-            session.setAttribute("adminLoginStatus", "setAttr");
-        // TODO: 修改过滤器
-        String requestUrl = request2.getRequestURL().toString();
-
-        // 若请求用户后台界面
-        if (requestUrl.indexOf("profiles/user.jsp") > 0) {
-            String userLoginStatus = (String) session.getAttribute("userLoginStatus");
-            // 如果用户未登录
-            if (!userLoginStatus.equals("true")) {
-                response2.sendRedirect(request2.getContextPath() + "/pages/signin/user.jsp");
-            }
-
-            // 若请求商家后台页面
-        } else if (requestUrl.indexOf("profiles/seller_behind.jsp") > 0) {
-            String sellerLoginStatus = (String) session.getAttribute("sellerLoginStatus");
-
-            // 如果商家未登录
-            if (!sellerLoginStatus.equals("true")) {
-                response2.sendRedirect(request2.getContextPath() + "/pages/signin/seller.jsp");
-            }
-
-            // 若请求管理员后台页面
-        } else if (requestUrl.indexOf("profiles/admin.jsp") > 0) {
-            String adminLoginStatus = (String) session.getAttribute("adminLoginStatus");
-
-            // 如果管理员未登录
-            if (!adminLoginStatus.equals("true")) {
-                response2.sendRedirect(request2.getContextPath() + "/pages/signin/admin.jsp");
-            }
+        if (session.getAttribute("userLoginStatus") == null) {
+            session.setAttribute("userLoginStatus", "false");
+            session.setAttribute("shopHasOpend", "false");
+            session.setAttribute("username", "..");
+            session.setAttribute("registrationId", "..");
         }
+        if (session.getAttribute("adminLoginStatus") == null) {
+            session.setAttribute("adminLoginStatus", "false");
+            session.setAttribute("adminId", "..");
+        }
+        // String requestUrl = request2.getRequestURL().toString();
+        //
+        // if (requestUrl.indexOf("home/user.jsp") > 0) {
+        // // 若请求用户后台界面
+        // String userLoginStatus = (String)
+        // session.getAttribute("userLoginStatus");
+        // if (!userLoginStatus.equals("true")) {
+        // // 如果用户未登录
+        // response2.sendRedirect(request2.getContextPath() +
+        // "/pages/login/user.jsp");
+        // }
+        // } else if (requestUrl.indexOf("home/seller.jsp") > 0) {
+        // // 若请求商家后台页面
+        // String userLoginStatus = (String)
+        // session.getAttribute("userLoginStatus");
+        // if (!userLoginStatus.equals("true")) {
+        // // 如果用户未登录
+        // response2.sendRedirect(request2.getContextPath() +
+        // "/pages/login/user.jsp");
+        // } else {
+        // String shopHasOpend = (String) session.getAttribute("shopHasOpend");
+        // if (!shopHasOpend.equals("true")) {
+        // // 如果未开店
+        // response2.sendRedirect(request2.getContextPath() +
+        // "/pages/home/user.jsp");
+        // }
+        // }
+        //
+        // } else if (requestUrl.indexOf("home/admin.jsp") > 0) {
+        // // 若请求管理员后台页面
+        // String adminLoginStatus = (String)
+        // session.getAttribute("adminLoginStatus");
+        // if (!adminLoginStatus.equals("true")) {
+        // // 如果管理员未登录
+        // response2.sendRedirect(request2.getContextPath() +
+        // "/pages/login/admin.jsp");
+        // }
+        // }
         chain.doFilter(request, response);
     }
 

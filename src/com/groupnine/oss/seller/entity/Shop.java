@@ -8,7 +8,7 @@ public class Shop {
     private String phone;
     private String shopDescribe;
     private String announcement;
-    private long eveluateSum;
+    private long evaluateSum;
     private long evaluateNumber;
 
     public String getRegistrationId() {
@@ -67,20 +67,20 @@ public class Shop {
         this.announcement = announcement;
     }
 
-    public long getEveluateSum() {
-        return eveluateSum;
-    }
-
-    public void setEveluateSum(long eveluateSum) {
-        this.eveluateSum = eveluateSum;
-    }
-
     public long getEvaluateNumber() {
         return evaluateNumber;
     }
 
     public void setEvaluateNumber(long evaluateNumber) {
         this.evaluateNumber = evaluateNumber;
+    }
+
+    public long getEvaluateSum() {
+        return evaluateSum;
+    }
+
+    public void setEvaluateSum(long evaluateSum) {
+        this.evaluateSum = evaluateSum;
     }
 
 }
