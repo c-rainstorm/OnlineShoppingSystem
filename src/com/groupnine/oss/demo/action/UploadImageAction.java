@@ -20,7 +20,7 @@ public class UploadImageAction extends HttpServlet {
             throws ServletException, IOException {
 
         ImageUpload service = new ImageUpload();
-        boolean success = service.addImage(request);
+        boolean success = service.uploadImages(request);
 
         if (success) {
             response.getWriter().print("success");

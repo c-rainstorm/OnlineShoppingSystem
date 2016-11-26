@@ -10,7 +10,7 @@
 
 	<body>
 		<form action="../addImage.action" method="post" enctype="multipart/form-data">
-			<input type="file" name="image" /><br />
+			<input type="file" name="image" multiple="multiple"/><br />
 			<input type="submit" value="upload" />
 		</form>
 	</body>
