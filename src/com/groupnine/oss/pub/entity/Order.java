@@ -12,7 +12,7 @@ public class Order {
     private Receiver receiver;
     private ArrayList<GoodsInOrder> goodsInOrder;
     private String orderStatus;
-    private long trackingNumber;
+    private String trackingNumber;
     private String payMethod;
     private Timestamp orderTime;
     private Timestamp completeTime;
@@ -71,11 +71,11 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public long getTrackingNumber() {
+    public String getTrackingNumber() {
         return trackingNumber;
     }
 
-    public void setTrackingNumber(long trackingNumber) {
+    public void setTrackingNumber(String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
 
