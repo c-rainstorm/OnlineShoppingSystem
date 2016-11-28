@@ -29,6 +29,7 @@ public final class LoginFilter implements Filter {
             session.setAttribute("userLoginStatus", "false");
             session.setAttribute("shopHasOpend", "false");
             session.setAttribute("username", "..");
+            session.setAttribute("nickname", "..");
             session.setAttribute("registrationId", "..");
         }
         if (session.getAttribute("adminLoginStatus") == null) {
