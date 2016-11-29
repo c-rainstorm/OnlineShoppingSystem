@@ -8,7 +8,7 @@ import com.groupnine.oss.user.entity.Receiver;
 public class Order {
     private String orderId;         // 16 位数字,含前导 0
     private int userId;
-    private String registrationId;
+    private int shopId;
     private Receiver receiver;
     private ArrayList<GoodsInOrder> goodsInOrder;
     private String orderStatus;
@@ -39,12 +39,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getRegistrationId() {
-        return registrationId;
+    public int getShopId() {
+        return shopId;
     }
 
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 
     public Receiver getReceiver() {
