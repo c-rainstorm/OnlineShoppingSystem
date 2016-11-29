@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Goods {
     private int goodsId;
     private int categoryId;
-    private String registrationId;
+    private int shopId;
     private String goodsName;
     private String goodsDescribe;
-    private ArrayList<GoodsImage> goodsImages = new ArrayList<>();
-    private ArrayList<GoodsAttr> goodsAttrs = new ArrayList<>(20);
+    private ArrayList<GoodsImage> goodsImages;
+    private ArrayList<GoodsAttr> goodsAttrs;
     private int sales;
     private Timestamp discountDeadline;
     private double discountRate;
@@ -31,12 +31,12 @@ public class Goods {
         this.categoryId = categoryId;
     }
 
-    public String getRegistrationId() {
-        return registrationId;
+    public int getShopId() {
+        return shopId;
     }
 
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 
     public String getGoodsName() {
@@ -59,8 +59,16 @@ public class Goods {
         return goodsImages;
     }
 
+    public void setGoodsImages(ArrayList<GoodsImage> goodsImages) {
+        this.goodsImages = goodsImages;
+    }
+
     public ArrayList<GoodsAttr> getGoodsAttrs() {
         return goodsAttrs;
+    }
+
+    public void setGoodsAttrs(ArrayList<GoodsAttr> goodsAttrs) {
+        this.goodsAttrs = goodsAttrs;
     }
 
     public int getSales() {
