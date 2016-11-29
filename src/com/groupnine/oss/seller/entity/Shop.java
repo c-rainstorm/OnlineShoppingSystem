@@ -1,22 +1,23 @@
 package com.groupnine.oss.seller.entity;
 
 public class Shop {
-    private String registrationId;
+    private int shopId;
     private int userId;
     private String shopName;
     private String address;
     private String phone;
     private String shopDescribe;
     private String announcement;
+    private String applyStatus;
     private long evaluateSum;
     private long evaluateNumber;
 
-    public String getRegistrationId() {
-        return registrationId;
+    public int getShopId() {
+        return shopId;
     }
 
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 
     public int getUserId() {
@@ -67,6 +68,14 @@ public class Shop {
         this.announcement = announcement;
     }
 
+    public long getEvaluateSum() {
+        return evaluateSum;
+    }
+
+    public void setEvaluateSum(long evaluateSum) {
+        this.evaluateSum = evaluateSum;
+    }
+
     public long getEvaluateNumber() {
         return evaluateNumber;
     }
@@ -75,12 +84,12 @@ public class Shop {
         this.evaluateNumber = evaluateNumber;
     }
 
-    public long getEvaluateSum() {
-        return evaluateSum;
+    public String getApplyStatus() {
+        return applyStatus;
     }
 
-    public void setEvaluateSum(long evaluateSum) {
-        this.evaluateSum = evaluateSum;
+    public void setApplyStatus(String applyStatus) {
+        this.applyStatus = applyStatus;
     }
 
 }
