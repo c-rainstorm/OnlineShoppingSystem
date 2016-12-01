@@ -37,7 +37,7 @@
 
             <div class="row" id="shopSignup2" style="display: none">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <form role="form" action="${pageContext.request.contextPath }/RegisterShop.action" method="post">
+                    <form role="form" action="${pageContext.request.contextPath }/registerShop.action" method="post">
 
                         <h2>店铺申请</h2>
 
@@ -92,7 +92,7 @@
         <script type="text/javascript">
             var login = "${sessionScope.shopHasOpend}";
             if(login.match("reviewing") != null) {
-                $("#shopStatus").html("${sessionScope.shopHasOpend}<b class='caret'></b>");
+                $("#shopStatus").html("${sessionScope.shopHasOpend}");
             }
         </script>
 

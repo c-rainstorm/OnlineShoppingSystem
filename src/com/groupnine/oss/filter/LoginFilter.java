@@ -32,6 +32,7 @@ public final class LoginFilter implements Filter {
             session.setAttribute("userAvatarAddr", "/images/avatars/default.jpg");
             session.setAttribute("shopId", "..");
             session.setAttribute("shopHasOpend", "false");
+
         }
         if (session.getAttribute("adminLoginStatus") == null) {
             session.setAttribute("adminLoginStatus", "setAttr");
