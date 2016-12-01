@@ -111,4 +111,8 @@ public class DBConfig {
                 + username + ", password=" + password + ", name=" + name + "]";
     }
 
+    @Test
+    public void test1() {
+        System.out.println(new DBConfig().toString());
+    }
 }
