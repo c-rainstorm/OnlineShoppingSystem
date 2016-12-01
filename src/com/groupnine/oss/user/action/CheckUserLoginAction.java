@@ -52,7 +52,7 @@ public class CheckUserLoginAction extends HttpServlet {
             httpSession.setAttribute("nickname", session.getNickname());
             httpSession.setAttribute("userAvatarAddr", session.getAvatarAddr());
             httpSession.setAttribute("shopHasOpend", session.isShopHasOpend());
-            if (session.isShopHasOpend().equals("true"))
+            if (!session.isShopHasOpend().equals("false"))
                 httpSession.setAttribute("shopId", session.getShopId());
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         }

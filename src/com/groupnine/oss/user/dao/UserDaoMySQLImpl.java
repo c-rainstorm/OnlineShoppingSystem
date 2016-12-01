@@ -12,7 +12,7 @@ import com.groupnine.oss.util.DBUtil;
 
 public class UserDaoMySQLImpl implements UserDao {
 
-    synchronized public boolean matchUserPassword(UserLoginInfo info) {
+    public boolean matchUserPassword(UserLoginInfo info) {
         boolean loginSuccess = false;
 
         String loginMethod = "username";
@@ -62,38 +62,32 @@ public class UserDaoMySQLImpl implements UserDao {
         try {
             conn = DBUtil.getConnection();
 
-            /* 1. 查 user 表取得 user_id, nickname */
-
             String loginMethod = "username";
             String identify = info.getUsername();
             if (info.getUsername() == null) {
                 loginMethod = "phone";
                 identify = info.getPhone();
             }
-            String queryUser = "select user_id, nickname, avatar from user where " + loginMethod
-                    + " = ? and is_valid=true;";
-            sttmt = conn.prepareStatement(queryUser);
+            String queryUserAndShop = "select user_id, nickname, avatar, shop_id, apply_status " +
+                    "from user join shop using (user_id) " +
+                    "where user." + loginMethod +
+                    " = ? and user.is_valid=true and shop.is_valid=true";
+            sttmt = conn.prepareStatement(queryUserAndShop);
             sttmt.setString(1, identify);
             rs = sttmt.executeQuery();
-            rs.next();
-            userId = rs.getString(1);
-            nickname = rs.getString(2);
-            avatarAddr = rs.getString(3);
-            sttmt.close();
-            rs.close();
-
-            /* 2. 查询店铺表 */
-
-            String queryShop = "select shop_id, apply_status from shop where user_id = ? and is_valid=true";
-            sttmt = conn.prepareStatement(queryShop);
-            sttmt.setInt(1, Integer.valueOf(userId));
-            rs = sttmt.executeQuery();
             if (rs.next()) {
+                userId = rs.getString(1);
+                nickname = rs.getString(2);
+                avatarAddr = rs.getString(3);
+
                 shopId = rs.getString(1);
-                String shopStatus = rs.getString(2);
+                String shopStatus = rs.getString(5);
                 shopHasOpend = shopStatus.equals("已通过") ? "ture"
                         : (shopStatus.equals("待审核") ? "reviewing"
                                 : "false");
+                if (!shopHasOpend.equals("false")) {
+                    shopId = rs.getString(4);
+                }
             }
 
         } catch (SQLException e) {
