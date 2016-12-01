@@ -14,24 +14,24 @@ import com.groupnine.oss.admin.entity.Transaction;
 import com.groupnine.oss.admin.service.AdminService;
 import com.groupnine.oss.admin.service.AdminServiceImpl;
 
-@WebServlet("/GetUnsolvedTransaction.action")
-public class GetUnsolvedTransactionAction extends HttpServlet {
+@WebServlet("/GetDoneTransaction.action")
+public class GetDoneTransaction extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AdminService service = new AdminServiceImpl();
 
-        ArrayList<Transaction> todotransactions = service.GetUnsolvedTransaction();
+        ArrayList<Transaction> donetransactions = service.GetDoneTransaction();
 
         Gson gson = new Gson();
-        String gsontodotransactions = gson.toJson(todotransactions);
+        String gsondonetransactions = gson.toJson(donetransactions);
 
         response.setCharacterEncoding("utf-8");
-        System.out.println(gsontodotransactions);
-        response.getWriter().append(gsontodotransactions);
+        // System.out.println(gsondonetransactions);
+        response.getWriter().append(gsondonetransactions);
 
-        // response.getWriter().println(gsontodotransactions);
+        // response.getWriter().println(gsondonetransactions);
 
     }
 

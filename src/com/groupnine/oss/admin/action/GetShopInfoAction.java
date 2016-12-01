@@ -10,29 +10,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.admin.entity.Transaction;
 import com.groupnine.oss.admin.service.AdminService;
 import com.groupnine.oss.admin.service.AdminServiceImpl;
+import com.groupnine.oss.seller.entity.Shop;
 
-@WebServlet("/GetUnsolvedTransaction.action")
-public class GetUnsolvedTransactionAction extends HttpServlet {
+@WebServlet("/GetShopInfo.action")
+public class GetShopInfoAction extends HttpServlet {
+    private static final long serialVersionUID1 = 1L;
+
+    public GetShopInfoAction() {
+        super();
+    }
+
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdminService service = new AdminServiceImpl();
 
-        ArrayList<Transaction> todotransactions = service.GetUnsolvedTransaction();
+        String phone = request.getParameter("searchshop");
+
+        String shop_name = request.getParameter("searchshop");
+
+        AdminService service = new AdminServiceImpl();
+        ArrayList<Shop> shops = service.GetShopInfo(phone, shop_name);
 
         Gson gson = new Gson();
-        String gsontodotransactions = gson.toJson(todotransactions);
+        String gsonShops = gson.toJson(shops);
 
         response.setCharacterEncoding("utf-8");
-        System.out.println(gsontodotransactions);
-        response.getWriter().append(gsontodotransactions);
-
-        // response.getWriter().println(gsontodotransactions);
-
+        response.getWriter().append(gsonShops);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
