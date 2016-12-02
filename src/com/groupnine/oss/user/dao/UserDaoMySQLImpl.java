@@ -51,10 +51,9 @@ public class UserDaoMySQLImpl implements UserDao {
 
     public UserSessionInfo getUserSessionInfo(UserLoginInfo info) {
         String userId = "";
-        String shopHasOpend = "";
-        // 因为 avatarAddr 为 null 时不能更改 session，所以初始值设为 null
-        String avatarAddr = null;
-        String shopId = "";
+        String shopHasOpend = "false";
+        String avatarAddr = "";
+        String shopId = "none";
         String nickname = "";
 
         Connection conn = null;

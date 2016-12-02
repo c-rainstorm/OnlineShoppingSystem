@@ -50,8 +50,7 @@ public class CheckUserLoginAction extends HttpServlet {
             httpSession.setAttribute("userLoginStatus", "true");
             httpSession.setAttribute("userId", session.getUserId());
             httpSession.setAttribute("nickname", session.getNickname());
-            if (session.getAvatarAddr() != null)
-                httpSession.setAttribute("userAvatarAddr", session.getAvatarAddr());
+            httpSession.setAttribute("userAvatarAddr", session.getAvatarAddr());
             httpSession.setAttribute("shopHasOpend", session.isShopHasOpend());
             if (!session.isShopHasOpend().equals("false"))
                 httpSession.setAttribute("shopId", session.getShopId());
