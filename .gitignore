@@ -13,3 +13,8 @@ hs_err_pid*
 build/
 WebContent/.project
 WebContent/WEB-INF/web.xml
+
+# emacs tempory files
+
+\#*
+*~
