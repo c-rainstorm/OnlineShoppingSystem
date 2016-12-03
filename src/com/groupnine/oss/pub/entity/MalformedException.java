@@ -1,6 +1,6 @@
 package com.groupnine.oss.pub.entity;
 
-public class MalformedException extends Exception {
+public class MalformedException extends RuntimeException {
 
     // Constructors
 
