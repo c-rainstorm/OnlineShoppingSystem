@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    $(".url").html(url());
+$(document).ready(function() {
+    $(".url").html(url("?"));
 
     var para = url('?');
     var levelOne = para.levelOne;
@@ -18,7 +18,7 @@ $(document).ready(function () {
                 $(".levelOne").attr("href", "goodsList.jsp?levelOne=" + levelOne);
                 $(".levelTwo").remove();
                 $(".bykeyword").remove();
-                $.get("../../getCategory.action", {}, function (response) {
+                $.get("../../getCategory.action", {}, function(response) {
                     fillCategory(response);
                 })
                 getGoodsBriefByCategory(levelOne, levelTwo, 1);
@@ -28,9 +28,9 @@ $(document).ready(function () {
             $(".levelOne").html(levelOne);
             $(".levelOne").attr("href", "goodsList.jsp?levelOne=" + levelOne);
             $(".levelTwo").html(levelTwo);
-            $(".levelOne").attr("href", $(".url").html());
+            $(".levelTwo").attr("href", $(".url").html());
             $(".bykeyword").remove();
-            $.get("../../getCategory.action", {}, function (response) {
+            $.get("../../getCategory.action", {}, function(response) {
                 fillCategory(response);
             })
             getGoodsBriefByCategory(levelOne, levelTwo, 1);
@@ -58,25 +58,26 @@ $(document).ready(function () {
 
     function getGoodsBriefByKeyword(keyword, pageNum, sortByPrice, priceUp) {
         if (sortByPrice == undefined) {
-            sortByPrice = "false";      //未定义时为 false
+            sortByPrice = "false"; //未定义时为 false
             priceUp = "false";
         } else if (priceUp == undefined) {
-            priceUp = "true";    //未定义时升序
+            priceUp = "true"; //未定义时升序
         }
 
         $.get("../../getGoodsBriefByKeyword.action", {
             keyword: keyword,
             pageNum: pageNum,
-            maxNumInOnPage: "20",
+            maxNumInOnePage: "20",
             sortByPrice: sortByPrice,
             priceUp: priceUp
-        }, function (response) {
+        }, function(response) {
             fillGoods(response);
             checkPage(20);
         })
     }
 
     function fillGoods(goods) {
+        $(".brief").remove();
         for (var i = 0; i < goods.length; ++i) {
             $(".goodsList").append(createGoods(goods[i]));
         }
@@ -103,7 +104,7 @@ $(document).ready(function () {
             '<p class="goodsDescribe">' + goods.goodsDescribe + '</p>' +
             '<div class="btn-group" style="margin-left: 20px">' +
             '<a class="btn btn-danger addToFavorite" href="javascript:;"><span class="glyphicon glyphicon-heart-empty"></span></a>' +
-            '<a class="btn btn-default" href="goods?goodsId=' + goods.goodsId + '" target="_blank">查看详情</a>' +
+            '<a class="btn btn-default" href="goods.jsp?goodsId=' + goods.goodsId + '" target="_blank">查看详情</a>' +
             '<a class="btn btn-success addToshoppingCart" href="javascript:;"><span class="glyphicon glyphicon-shopping-cart"></span></a>' +
             '</div>' +
             '</div>' +
@@ -112,21 +113,21 @@ $(document).ready(function () {
         return newGoods;
     }
 
-    $("body").delegate(".addToFavorite","click",function(){
-        $.get("../../addGoodsToFavorite.action",{
-            goodsId:$(this).parents(".brief").find(".goodsId").html()
+    $("body").delegate(".addToFavorite", "click", function() {
+        $.get("../../addGoodsToFavorite.action", {
+            goodsId: $(this).parents(".brief").find(".goodsId").html()
         })
         $(this).find("span").removeClass("glyphicon-heart-empty");
         $(this).find("span").addClass("glyphicon-heart");
     })
 
-    $("body").delegate(".addToshoppingCart","click", function(){
-        $.get("../../addToShoppingCart.action",{
-            goodsId:$(this).parents(".brief").find(".goodsId").html(),
-            attributeId:$(this).parents(".brief").find(".attributeId").html(),
+    $("body").delegate(".addToshoppingCart", "click", function() {
+        $.get("../../addToShoppingCart.action", {
+            goodsId: $(this).parents(".brief").find(".goodsId").html(),
+            attributeId: $(this).parents(".brief").find(".attributeId").html(),
             goodsNum: "1"
-        },function(response){
-            if(response.result == "true"){
+        }, function(response) {
+            if (response.result == "true") {
                 var curNum = parseInt($(".badge").html());
                 $(".badge").html(curNum + 1);
             }
@@ -134,9 +135,7 @@ $(document).ready(function () {
     })
 
     function getGoodsBriefByCategory(levelOne, levelTwo, pageNum, sortByPrice, priceUp) {
-        if (levelTwo == undefined) {
-            levelTwo = "";
-        }
+
         if (sortByPrice == undefined) {
             sortByPrice = "false";
             priceUp = "false";
@@ -144,27 +143,39 @@ $(document).ready(function () {
         if (priceUp == undefined) {
             priceUp = "true";
         }
-
+        if (levelTwo == undefined) {
+            $.get("../../getGoodsBriefByCategory.action", {
+                levelOne: levelOne,
+                pageNum: pageNum,
+                maxNumInOnePage: "20",
+                sortByPrice: sortByPrice,
+                priceUp: priceUp
+            }, function(response) {
+                fillGoods(response);
+                checkPage(20);
+            })
+            return;
+        }
         $.get("../../getGoodsBriefByCategory.action", {
             levelOne: levelOne,
             levelTwo: levelTwo,
             pageNum: pageNum,
-            maxNumInOnPage: "20",
+            maxNumInOnePage: "20",
             sortByPrice: sortByPrice,
             priceUp: priceUp
-        }, function (response) {
+        }, function(response) {
             fillGoods(response);
             checkPage(20);
         })
     }
 
-    $(".sales").click(function () {
+    $(".sales").click(function() {
         $(".sortByPrice").removeClass("active");
         $(".pageNum").html("1");
         getPage(1);
     })
 
-    $(".sortByPrice").click(function () {
+    $(".sortByPrice").click(function() {
         $(this).addClass("active");
         var arrow = $(this).find("span");
         if (arrow.hasClass("glyphicon-arrow-down")) {
@@ -180,7 +191,7 @@ $(document).ready(function () {
         }
     })
 
-    $(".previous").click(function () {
+    $(".previous").click(function() {
         if ($(this).hasClass("disabled"))
             return;
 
@@ -193,7 +204,7 @@ $(document).ready(function () {
         $(".pageNum").html(curPage - 1);
     })
 
-    $(".next").click(function () {
+    $(".next").click(function() {
         if ($(this).hasClass("disabled"))
             return;
 

@@ -40,20 +40,20 @@ $(document).ready(function() {
 
     function createLevelOne(levelOneName) {
         var levelOne = '<div class="levelOne">' +
-                            '<div><a class="name" href="pages/core/goodsList.jsp?levelOne='+ levelOneName +'" target="_blank">'+ levelOneName +'</a><i class="glyphicon glyphicon-menu-right"></i></div>' +
-                            '<div name="xz" class="levelOneRoot">' +
-                            '</div>' +
-                        '</div>';
+            '<div><a class="name" href="pages/core/goodsList.jsp?levelOne=' + levelOneName + '" target="_blank">' + levelOneName + '</a><i class="glyphicon glyphicon-menu-right"></i></div>' +
+            '<div name="xz" class="levelOneRoot">' +
+            '</div>' +
+            '</div>';
         return levelOne;
     }
 
     function createLevelTwo(levelOneRoot, levelTwoName) {
         // alert(levelOneRoot.prev("a").attr("href"));
-        var levelTwo =  '<div>' +
-                            '<div><a class="levelTwo" href="' +
-                            levelOneRoot.parents(".levelOne").find(".name").attr("href") + '&levelTwo=' + levelTwoName + '" target="_blank">'+
-                            levelTwoName + '</a></div>' +
-                        '</div>';
+        var levelTwo = '<div>' +
+            '<div><a class="levelTwo" href="' +
+            levelOneRoot.parents(".levelOne").find(".name").attr("href") + '&levelTwo=' + levelTwoName + '" target="_blank">' +
+            levelTwoName + '</a></div>' +
+            '</div>';
         // alert(levelTwo);
         return levelTwo;
     }
@@ -78,6 +78,7 @@ $(document).ready(function() {
             }
         }
     }
+
     function addImageToCarousel(slide, goods) {
         if (slide == 1) {
             slide = "first-slide";
@@ -86,19 +87,21 @@ $(document).ready(function() {
         } else if (slide == 3) {
             slide = "third-slide";
         }
-
+        var a = $("." + slide);
         // 设置轮播图
+        // a.attr("src", "/images/goods/asdf.jpg");
         $("." + slide).attr("src", goods.imageAddr);
         // 设置查看详情按钮
-        $("." + slide).next().find("a").attr("href", "pages/core/goods.jsp?goodsId=" + goods.goodsId);
+        a = $("." + slide).parent().find("a");
+        $("." + slide).parent().find("a").attr("href", "pages/core/goods.jsp?goodsId=" + goods.goodsId);
     }
 
     function addBigImageToShow(goods) {
         $(".show").append(createBigImage());
-        var bigImage = $(".show bigImage:last");
+        var bigImage = $(".show .bigImage:last");
 
         bigImage.find("a").attr("href", "pages/core/goods.jsp?goodsId=" + goods.goodsId)
-        bigImage.find("img").attr("src", goos.imageAddr);
+        bigImage.find("img").attr("src", goods.imageAddr);
     }
 
     function createBigImage() {
@@ -111,10 +114,10 @@ $(document).ready(function() {
 
     function addSmallImageToShow(goods) {
         $(".show").append(createSmallImage());
-        var smallImage = $(".show smallImage:last");
+        var smallImage = $(".show .smallImage:last");
 
         smallImage.find("a").attr("href", "pages/core/goods.jsp?goodsId=" + goods.goodsId)
-        smallImage.find("img").attr("src", goos.imageAddr);
+        smallImage.find("img").attr("src", goods.imageAddr);
     }
 
 

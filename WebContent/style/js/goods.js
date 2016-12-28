@@ -1,17 +1,17 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $(".goodsId").html(url("?goodsId"));
 
     var goodsId = $(".goodsId").html();
 
     $.get("../../getGoodsDetail.action", {
         goodsId: goodsId
-    }, function (response) {
+    }, function(response) {
         fillGoodsDetail(response);
     })
 
     $.get("../../getShopInfoByGoodsId.action", {
         goodsId: goodsId
-    }, function (response) {
+    }, function(response) {
         fillShopInfo(response);
     })
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
         $(".goodsDescribe").html(goods.goodsDescribe);
         fillGoodsImage(goods.images);
         fillGoodsCategory(goods.levelOne, goods.levelTwo);
-        if (Date.parse(goods.discountDeadline) > (new Date()).getTime()) {
+        if (Date.parse(goods.discountDeadline.substring(0, 10)) > (new Date()).getTime()) {
             goods.discountRate = parseFloat(goods.discountRate);
             $(".discount").html("商品打折中.. 可享 " + floor(goods.discountRate * 100) + " 折优惠")
             for (var i = 0; i < goods.attributes.length; ++i) {
@@ -81,7 +81,7 @@ $(document).ready(function () {
     }
 
     function checkInventory() {
-        $(".attribute").each(function () {
+        $(".attribute").each(function() {
             // 库存为 0 时，标记为 disabled
             if ($(this).find(".inventory").html() == '0') {
                 $(this).addClass("disabled");
@@ -89,7 +89,7 @@ $(document).ready(function () {
         })
     }
 
-    $("body").delegate(".attribute", "click", function () {
+    $("body").delegate(".attribute", "click", function() {
         activeAttribute($(this));
     })
 
@@ -107,40 +107,41 @@ $(document).ready(function () {
 
         newAttr.removeClass("btn-default");
         newAttr.addClass("btn-primary");
-        $(".goodsPrice").html(newAttr.find("price"));
+
+        $(".goodsPrice").html(newAttr.find(".price").html());
     }
 
-    $("body").delegate(".smallImage", "mouseenter", function () {
+    $("body").delegate(".smallImage", "mouseenter", function() {
         $(this).css("border-style", "solid");
         $(this).css("border-color", "red");
         $(".bigImage").attr("src", $(this).attr("src"));
     })
 
-    $("body").delegate(".smallImage", "mouseleave", function () {
+    $("body").delegate(".smallImage", "mouseleave", function() {
         $(this).css("border-style", "none");
     })
 
-    $(".decNum").click(function () {
+    $(".decNum").click(function() {
         var goodsNum = parseInt($(".goodsNum").html());
         if (goodsNum > 1) {
             $(".goodsNum").html(goodsNum - 1);
         }
     })
 
-    $(".incNum").click(function () {
+    $(".incNum").click(function() {
         var goodsNum = parseInt($(".goodsNum").html());
         $(".goodsNum").html(goodsNum + 1);
     })
 
-    $(".addToShoppingCart").click(function () {
+    $(".addToShoppingCart").click(function() {
         var attr = $(".btn-primary");
-        if(attr != undefined){
-            $.get("../../addToShoppingCart.action",{
-                goodsId:$(".goodsId").html(),
-                attributeId:attr.find(".attributeId").html(),
+        if (attr != undefined) {
+            $.get("../../addToShoppingCart.action", {
+                goodsId: $(".goodsId").html(),
+                attributeId: attr.find(".attributeId").html(),
                 goodsNum: $(".goodsNum").html()
-            },function(response){
-                if(response.result == "true"){
+            }, function(response) {
+                if (response.result == "true") {
                     window.location.href = window.location.href;
                 }
             })

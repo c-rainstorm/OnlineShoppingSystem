@@ -1,5 +1,5 @@
 <%@page contentType="text/html"%>
-    <%@page pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -17,8 +17,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -48,14 +47,13 @@
                 </ul>
                 <ul id="login" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <img alt="avatar" style="height: 40px; width: 40px; margin-top: 5px;" src="/images/avatars/default.jpg" class="img-circle dropdown-toggle avatar"
-                            data-toggle="dropdown" />
+                        <img alt="avatar" style="height: 40px; width: 40px; margin-top: 5px;" src="/images/avatars/default.jpg" class="img-circle dropdown-toggle avatar" data-toggle="dropdown" />
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="glyphicon glyphicon-user" href="pages/home/user.jsp" target="_blank"> 个人中心</a>
+                                <a class="glyphicon glyphicon-user" href="../home/user.jsp" target="_blank"> 个人中心</a>
                             </li>
                             <li>
-                                <a class="glyphicon glyphicon-shopping-cart" href="/shopping-cart.jsp" target="_blank"> 我的购物车</a>
+                                <a class="glyphicon glyphicon-shopping-cart" href="shopping-cart.jsp" target="_blank"> 我的购物车</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -87,7 +85,7 @@
             </div>
         </div>
         <div class="col-md-1 col-md-offset-1 shoppingCart">
-            <a class="btn btn-block btn-success" href="/shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
+            <a class="btn btn-block btn-success" href="shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
         </div>
     </div>
     <hr />
@@ -158,17 +156,17 @@
     <script type="text/javascript " src="../../style/js/url.min.js "></script>
     <script type="text/javascript " src="../../style/js/goodsList.js "></script>
     <script type="text/javascript ">
-            var userLoginStatus = "${sessionScope.userLoginStatus} ";
+        var userLoginStatus = "${sessionScope.userLoginStatus} ";
 
-            if(userLoginStatus.match("true") != null) {
-                $("#unlogin ").hide();
-                $(".avatar ").attr("src ","${sessionScope.userAvatarAddr} ")
-                $("#login ").show();
-            } else {
-                $("#login ").hide();
-                $("#unlogin ").show();
-            }
-        </script>
+        if (userLoginStatus.match("true") != null) {
+            $("#unlogin ").hide();
+            $(".avatar ").attr("src ", "${sessionScope.userAvatarAddr} ")
+            $("#login ").show();
+        } else {
+            $("#login ").hide();
+            $("#unlogin ").show();
+        }
+    </script>
 </body>
 
 </html>

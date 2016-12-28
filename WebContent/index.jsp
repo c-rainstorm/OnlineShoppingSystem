@@ -19,8 +19,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -50,8 +49,7 @@
                 </ul>
                 <ul id="login" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <img alt="avatar" style="height: 40px; width: 40px; margin-top: 5px;" src="/images/avatars/default.jpg" class="img-circle dropdown-toggle avatar"
-                            data-toggle="dropdown" />
+                        <img alt="avatar" style="height: 40px; width: 40px; margin-top: 5px;" src="/images/avatars/default.jpg" class="img-circle dropdown-toggle avatar" data-toggle="dropdown" />
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="glyphicon glyphicon-user" href="pages/home/user.jsp" target="_blank"> 个人中心</a>
@@ -101,13 +99,6 @@
         -->
     <div class="row" style="margin:0px;">
         <div class="col-md-2 col-md-offset-2">
-            <!--<div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-                    请选择分类<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu category-root">
-                    </ul>
-                </div>-->
             <div class="VerticalMenu category-root">
 
             </div>
@@ -207,17 +198,17 @@
     <script type="text/javascript " src="style/js/public.js "></script>
     <script type="text/javascript " src="style/js/index.js "></script>
     <script type="text/javascript ">
-            var userLoginStatus = "${sessionScope.userLoginStatus}";
+        var userLoginStatus = "${sessionScope.userLoginStatus}";
 
-            if(userLoginStatus.match("true") != null) {
-                $("#unlogin ").hide();
-                $(".avatar ").attr("src","${sessionScope.userAvatarAddr}")
-                $("#login ").show();
-            } else {
-                $("#login ").hide();
-                $("#unlogin ").show();
-            }
-        </script>
+        if (userLoginStatus.match("true") != null) {
+            $("#unlogin ").hide();
+            $(".avatar ").attr("src", "${sessionScope.userAvatarAddr}")
+            $("#login ").show();
+        } else {
+            $("#login ").hide();
+            $("#unlogin ").show();
+        }
+    </script>
 </body>
 
 </html>

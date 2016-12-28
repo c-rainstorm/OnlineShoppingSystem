@@ -89,7 +89,7 @@
                         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
                             <ul class="nav nav-tabs ">
                                 <li class="active"><a href="javascript:;">全部订单</a></li>
-                                <li><a href="javascript:;">代付款</a></li>
+                                <li><a href="javascript:;">待付款</a></li>
                                 <li><a href="javascript:;">待收货</a></li>
                                 <li><a href="javascript:;">待评价</a></li>
                                 <li><a href="javascript:;">已完成</a></li>
@@ -99,10 +99,13 @@
                                     <h3 class="title">订单简介</h3>
                                     <div class="row titleHead">
                                         <hr>
-                                        <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <div class="col-xs-3 col-sm-3 col-md-3">
                                             <p>订单号码</p>
                                         </div>
-                                        <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <div class="col-xs-3 col-sm-3 col-md-3">
+                                            <p style="padding-left: 17px;">店铺名</p>
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3">
                                             <p>订单状态</p>
                                         </div>
                                     </div>
@@ -146,9 +149,10 @@
 	<script src="../../style/js/jquery.min.js "></script>
 	<script src="../../style/js/bootstrap.min.js "></script>
 	<script src="../../style/js/jquery-ui.min.js " ></script>
+    <script src="../../style/js/jquery.cookie.js "></script>
 	<script src="../../style/js/userBackground.js "></script>
 	<script>
-		$("#nickname ").html("${sessionScope.nickname}<b class='caret'></b>"); var shophref = ""; if("${sessionScope.shopHasOpend}" == "true"){ shophref = "seller.jsp"; }else{ shophref = "../"; } $(".shop").attr("href",shophref); $(".avatarAddr").html("${sessionScope.userAvatarAddr}");
+		$("#nickname ").html("${sessionScope.nickname}<b class='caret'></b>"); var shophref = ""; if("${sessionScope.shopHasOpend}" == "true"){ shophref = "sellerBehind.jsp"; }else{ shophref = "sellerSignup.jsp"; } $(".shop").attr("href",shophref); $(".avatarAddr").html("${sessionScope.userAvatarAddr}");
 
                             </script>
         </body>

@@ -6,7 +6,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>我的购物车</title>
+            <title>结算页</title>
             <link rel="icon" href="/images/icon.jpg" />
             <link rel="stylesheet" href="../../style/css/bootstrap.min.css" />
             <link rel="stylesheet" href="../../style/css/sticky-footer.css" />
@@ -52,7 +52,7 @@
                                         <a class="glyphicon glyphicon-user" href="../home/user.jsp" target="_blank"> 个人中心</a>
                                     </li>
                                     <li>
-                                        <a class="glyphicon glyphicon-shopping-cart" href=""> 我的购物车</a>
+                                        <a class="glyphicon glyphicon-shopping-cart" href="shopping-cart.jsp" target="_blank"> 我的购物车</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -83,54 +83,17 @@
                         </span>
                     </div>
                 </div>
+                <div class="col-md-1 col-md-offset-1 shoppingCart">
+                    <a class="btn btn-block btn-success" href="shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
+                </div>
             </div>
             <hr />
 
             <div class="container" style="padding-left: 50px; padding-right: 50px;">
-                <div class="title row">
-
-                    <div class="col-lg-1 col-md-1 col-lg-offset-1 col-md-offset-1">
-                        <input type="checkbox" align="right" class="checkAll" /><span align="right"> 全选</span>
-                    </div>
-                    <div class="col-lg-2 col-md-2">
-                        <span>商品</span>
-                    </div>
-                    <div class="col-lg-2 col-md-2">
-                    </div>
-                    <div class="col-lg-1 col-md-1">
-                        <span>单价</span>
-                    </div>
-                    <div class="col-lg-2 col-md-2" align="center">
-                        <span>数量</span>
-                    </div>
-                    <div class="col-lg-1 col-md-1">
-                        <span>小计</span>
-                    </div>
-                    <div class="col-lg-1 col-md-1">
-                        <span>操作</span>
-                    </div>
-                </div>
-                <hr />
-                <div class="root">
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-lg-1 col-md-1 col-lg-offset-1 col-md-offset-1" style="padding-top: 10px;">
-                        <input type="checkbox" align="right" class="checkAll" /><span align="right"> 全选</span>
-                    </div>
-                    <div class="col-lg-2 col-md-2" style="padding-top: 10px;">
-                        <p><a href="javascript:;" class="deleteChecked">删除选中商品</a></p>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <p align="right">总价：<span style="color: red; font-weight:bold; font-size:2em;">￥<span class="total">0</span></span>
-                        </p>
-                    </div>
-                    <div class="col-lg-1 col-md-1 ">
-                        <a href="confirmOrder.jsp" class="btn btn-danger checkout">去结算</a>
-                    </div>
-                </div>
+                <p class="tip"></p>
             </div>
-            <hr />
+
+
             <div class="row" style="margin:50px 0px 0px 0px;">
                 <footer class="footer" style="text-align: center">
                     <div class="container">
@@ -155,7 +118,7 @@
             <script type="text/javascript " src="../../style/js/bootstrap.min.js "></script>
             <script type="text/javascript " src="../../style/js/public.js "></script>
             <script type="text/javascript " src="../../style/js/jquery.cookie.js"></script>
-            <script type="text/javascript " src="../../style/js/shopping-cart.js "></script>
+            <script type="text/javascript " src="../../style/js/pay-result.js"></script>
             <script type="text/javascript ">
                 var userLoginStatus = "${sessionScope.userLoginStatus} ";
 

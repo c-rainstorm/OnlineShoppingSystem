@@ -51,7 +51,7 @@
                             data-toggle="dropdown" />
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="glyphicon glyphicon-user" href="pages/home/user.jsp" target="_blank"> 个人中心</a>
+                                <a class="glyphicon glyphicon-user" href="../home/user.jsp" target="_blank"> 个人中心</a>
                             </li>
                             <li>
                                 <a class="glyphicon glyphicon-shopping-cart" href="/shopping-cart.jsp" target="_blank"> 我的购物车</a>

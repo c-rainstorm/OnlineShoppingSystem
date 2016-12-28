@@ -60,7 +60,7 @@ $(document).ready(function() {
             pageContent = "*";
         }
         $(".pageNum").html("1");
-
+        $(".summary").remove();
         showOrderPageOf(pageContent, 1);
         setTimeout(checkOrderPage, 500);
     })
@@ -74,10 +74,9 @@ $(document).ready(function() {
             var brief = order.find(".brief");
             var detail = order.find(".detail");
             //已经获取订单并显示出来
-            if (detail.length > 0 && !detail.get(0).style.display.match("none")) {
-                detail.slideToggle();
-                brief.slideToggle();
-                break;
+            if (detail.length > 0) {
+                detail.hide();
+                brief.show();
             }
         }
 
@@ -85,21 +84,38 @@ $(document).ready(function() {
 
         var brief = summary.find(".brief");
         var detail = summary.find(".detail");
-        if (pageContent.match("代付款")) {
-            var orderOpeBtn = detail.find(".finishOrder");
-            orderOpeBtn.removeClass("finishOrder");
-            orderOpeBtn.html("去付款");
-            //TODO orderOpeBtn href 该为支付页的 url
-        }
+
         if (detail.length == 0) {
             summary.append(createOrderDetail());
             var orderId = summary.find(".brief .orderId").html();
             $.get("../../getOrderById.action", { orderId: orderId }, function(order) {
                 addDataToDetail(summary.find(".detail"), order);
+                brief.slideToggle();
             })
+            if (brief.find(".orderStatus").html().match("待付款")) {
+                var orderOpeBtn = summary.find(".finishOrder");
+                orderOpeBtn.removeClass("finishOrder");
+                orderOpeBtn.addClass("payOrder")
+                orderOpeBtn.html("去付款");
+                orderOpeBtn.attr("href", "../core/payOrders.jsp");
+                orderOpeBtn.attr("target", "_blank");
+            }
+        } else {
+            detail.show();
+            brief.hide();
         }
-        summary.find(".detail").slideToggle();
-        brief.slideToggle();
+
+    })
+
+    $(".main").delegate(".payOrder", "click", function() {
+        var temp = new Array();
+        temp[0] = $(this).parents(".summary").find(".brief .orderId").html();
+        var a = JSON.stringify(temp);
+        $.removeCookie("orderIds");
+        $.cookie('orderIds', JSON.stringify(temp));
+        var a = $.cookie("orderIds");
+        // $.cookie('orderIds', temp);
+        a = $.cookie("orderIds");
     })
 
     $(".main").delegate(".finishOrder", "click", function() {
@@ -268,19 +284,21 @@ $(document).ready(function() {
     function showOrderPageOf(pageContent, pageNum) {
         $.get("../../getOrderByStatus.action", {
                 orderStatus: pageContent,
-                maxNumInOnPage: 10,
+                maxNumInOnePage: "10",
                 pageNum: pageNum
             },
             function(briefs) {
-                $.each(briefs, function(i, order) {
+                for (var i = 0; i < briefs.length; ++i) {
+                    order = briefs[i];
                     $(".main").append(createOrderBrief());
                     var brief = $(".main .summary:last");
 
-                    brief.find(".orderStatus").html(orderStatus);
+                    brief.find(".orderStatus").html(order.orderStatus);
+                    brief.find(".shopName").html(order.shopName);
                     brief.find(".orderId").html(order.orderId);
 
                     brief.slideToggle();
-                })
+                }
             })
     }
 
@@ -302,27 +320,16 @@ $(document).ready(function() {
 
 
     function createOrderBrief() {
-        var newBrief = "<div class=\"summary\" style=\"display: none;\"><div class=\"row brief\"><div class=\"col-xs-4 col-sm-4 col-md-4\"><h4 class=\"orderId\"></h4>" +
-            "</div><div class=\"col-xs-4 col-sm-4 col-md-4\"><h4 class=\"orderStatus\"></h4></div><div class=\"col-xs-4 col-sm-4 col-md-4\">" +
+        var newBrief = "<div class=\"summary\" style=\"display: none;\"><div class=\"row brief\"><div class=\"col-xs-3 col-sm-3 col-md-3\"><h4 class=\"orderId\"></h4>" +
+            "</div><div class=\"col-xs-3 col-sm-3 col-md-3\"><h4 class=\"shopName\"></h4>" +
+            "</div><div class=\"col-xs-3 col-sm-3 col-md-3\"><h4 class=\"orderStatus\"></h4></div><div class=\"col-xs-3 col-sm-3 col-md-3\">" +
             "<a href=\"javascript:;\" class=\"showDetail form-control btn btn-success\" style=\"margin: 3px 12px;\">查看详情</a></div></div></div>";
 
         return newBrief;
     }
 
     function createOrderDetail() {
-        var newDetail = "<div class=\"row detail\" style=\"display: none;\"><h3>订单详情</h3><hr><p><strong>订单状态：" +
-            "<span class=\"status\"></span></strong></p><br><p>订单号码：<span class=\"orderId\"></span></p>" +
-            "<p>下单日期：<span class=\"trackingNumber\"></span></p>" +
-            "<p>下单日期：<span class=\"orderTime\"></span></p><p>付款方式：<span class=\"payway\"></span></p><br>" +
-            "<p>收货地址：<span class=\"receiverAddress\"></p><p>收货人名：<span class=\"receiverName\"></span></p>" +
-            "<p>收货日期：<span class=\"finishTime\"></span></p><br><p>买家备注：<span class=\"commit\"></span></p><hr><div class=\"row\"><div class=\"col-xs-3 col-sm-3 col-md-3\">" +
-            "<p>食品</p></div><div class=\"col-xs-6 col-sm-6 col-md-6\"><p>购买信息</p></div><div class=\"col-xs-3 col-sm-3 col-md-3\">" +
-            "<p>小计</p></div></div><hr><div class=\"goods\"></div>" +
-            "<div class=\"row\"><div class=\"col-xs-3 col-sm-3 col-md-3\"></div><div class=\"col-xs-6 col-sm-6 col-md-6\"></div>" +
-            "<div class=\"col-xs-3 col-sm-3 col-md-3\"><p>订单总额： ￥<span class=\"orderTotal\"></span></p><p>配送费用： ￥<span class=\"deliveryFee\"></span></p>" +
-            "<p><strong>总 金 额：￥<span class=\"realPay\"></span></strong></p></div></div><div class=\"row\">" +
-            "<div class=\"col-xs-10 col-sm-10 col-md-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1\"><a href=\"javascript:;\"" +
-            "class=\"finishOrder form-control btn btn-success\" style=\"display: none;\">完成订单</a></div></div></div>";
+        var newDetail = '<div class="row detail"><div class="col-md-9 col-lg-9 col-md-offset-1 col-lg-offset-1"><h3>订单详情</h3><hr><p><strong>订单状态： <span class="status"></span></strong></p><br><p>订单号码：<span class="orderId"></span></p> <p>下单日期：<span class="trackingNumber"></span></p> <p>下单日期：<span class="orderTime"></span></p><p>付款方式：<span class="payway"></span></p><br> <p>收货地址：<span class="receiverAddress"></p><p>收货人名：<span class="receiverName"></span></p> <p>收货日期：<span class="finishTime"></span></p><br><p>买家备注：<span class="commit"></span></p><hr><div class="row"><div class="col-xs-6 col-sm-6 col-md-6"> <p>商品</p></div><div class="col-xs-3 col-sm-3 col-md-3"><p>商品属性</p></div><div class="col-xs-3 col-sm-3 col-md-3"> <p>小计</p></div></div><hr><div class="goods"></div> <div class="row"><div class="col-xs-3 col-sm-3 col-md-3"></div><div class="col-xs-6 col-sm-6 col-md-6"></div> <div class="col-xs-3 col-sm-3 col-md-3"><p>订单总额： ￥<span class="orderTotal"></span></p><p>配送费用： ￥<span class="deliveryFee"></span></p> <p><strong>总 金 额：￥<span class="realPay"></span></strong></p></div></div><div class="row"> <div class="col-md-offset-9 col-md-offset-9"> <a href="javascript:;" class="finishOrder form-control btn btn-success">完成订单</a> </div> </div></div></div>';
         return newDetail;
     }
 
@@ -360,6 +367,12 @@ $(document).ready(function() {
         if (order.trackingNumber == undefined || order.trackingNumber == null) {
             order.trackingNumber = "";
         }
+        if (order.completeTime == undefined || order.completeTime == null) {
+            order.completeTime = "";
+        }
+        if (order.annotation == undefined || order.annotation == null) {
+            order.annotation = "";
+        }
         detail.find(".status").html(order.orderStatus);
         detail.find(".orderId").html(order.orderId);
         detail.find(".trackingNumber").html(order.trackingNumber);
@@ -371,12 +384,7 @@ $(document).ready(function() {
         detail.find(".commit").html(order.annotation);
 
         $.each(order.goodsInOrder, function(i, goodsInOrder) {
-            var goods = "<div class=\"row\"><div class=\"col-xs-3 col-sm-3 col-md-3\">" +
-                "<img style='height:100px; width:100px;' src=\"" + goodsInOrder.goods.imageAddr + "\" alt=\"该图片离家出走了..\" class=\"img-thumbnail img-responsive\"></div><div class=\"col-xs-6 col-sm-6 col-md-6\">" +
-                "<p><span class=\"foodName\">" + goodsInOrder.goods.goodsName + "<br>" + goodsInOrder.goods.goodsDescribe + "<br>" + goodsInOrder.goods.attributeValue + "</span></p><p>售价： ￥<span class=\"price\">" +
-                goodsInOrder.goods.actualPrice +
-                "</span> x<span class=\"soldNum\">" + goodsInOrder.goodsNum + "</span></p>" +
-                "</div><div class=\"col-xs-3 col-sm-3 col-md-3\"><p>￥<span class=\"subTotal\">" + (goodsInOrder.goodsNum * goodsInOrder.goods.actualPrice) + "</span></p></div></div><hr>"
+            var goods = '<div class="row"><div class="col-xs-2 col-sm-2 col-md-2"> <img style="height:100px; width:100px;" src="' + goodsInOrder.goods.imageAddr + '"alt="该图片离家出走了.. " class="img-thumbnail img-responsive"></div><div class=" col-xs-4 col-sm-4 col-md-4 "> <p> <span class="foodName" > ' + goodsInOrder.goods.goodsName + '<br> ' + goodsInOrder.goods.goodsDescribe + ' </div><div class=" col-xs-3 col-sm-3 col-md-3 "> ' + goodsInOrder.attributeValue + '</span></p><p>售价：<br> ￥<span class=" price "> ' + goodsInOrder.actualPrice + '</span> x<span class="soldNum"> ' + goodsInOrder.goodsNum + '</span > </p> </div><div class="col-xs-3 col-sm-3 col-md-3"><p>￥<span class="subTotal"> ' + (goodsInOrder.goodsNum * goodsInOrder.actualPrice) + '</span > </p></div > </div><hr>';
 
             detail.find(".goods").append(goods);
         })
@@ -434,8 +442,16 @@ $(document).ready(function() {
     $(".main").delegate(".userInfo", "submit", function(e) {
         e.preventDefault();
         if ($(".avatar").val() != "") {
-            $.get("../../updateAvatar.action", new FormData(this), function() {
-                $(".avatar").val("");
+            $.ajax({
+                type: "post",
+                url: "../../updateAvatar.action",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                async: true,
+                success: function() {
+                    $(".avatar").val("");
+                }
             });
         }
         $.get("../../updateNickname.action", {

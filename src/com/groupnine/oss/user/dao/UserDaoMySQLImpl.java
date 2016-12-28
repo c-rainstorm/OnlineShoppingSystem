@@ -1281,7 +1281,7 @@ public class UserDaoMySQLImpl implements UserDao {
                     + "from goods_order join shop using(shop_id) "
                     + "where goods_order.is_valid=true "
                     + "  and shop.is_valid=true "
-                    + "  and user_id = ? "
+                    + "  and goods_order.user_id = ? "
                     + "  and order_status like '" + orderStatus + "' "
                     + "limit ?, ?;";
             sttmt = conn.prepareStatement(queryOrder);

@@ -16,8 +16,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -47,11 +46,10 @@
                 </ul>
                 <ul id="login" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <img alt="avatar" style="height: 40px; width: 40px; margin-top: 5px;" src="/images/avatars/default.jpg" class="img-circle dropdown-toggle avatar"
-                            data-toggle="dropdown" />
+                        <img alt="avatar" style="height: 40px; width: 40px; margin-top: 5px;" src="/images/avatars/default.jpg" class="img-circle dropdown-toggle avatar" data-toggle="dropdown" />
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="glyphicon glyphicon-user" href="pages/home/user.jsp" target="_blank"> 个人中心</a>
+                                <a class="glyphicon glyphicon-user" href="../home/user.jsp" target="_blank"> 个人中心</a>
                             </li>
                             <li>
                                 <a class="glyphicon glyphicon-shopping-cart" href="shopping-cart.jsp" target="_blank"> 我的购物车</a>
@@ -107,75 +105,19 @@
                 </div>
                 <div class="row smallImages" style="margin-top: 10px">
                     <div class="col-md-1" style="padding: 0px"></div>
-                    <div class="col-md-2" style="padding: 0px"><img class="smallImage img-responsive img-thumbnail" src="/images/goods/psb.jpg" style="height:50px; width:50px" alt=""></div>
-                    <div class="col-md-2" style="padding: 0px"><img class="smallImage img-responsive img-thumbnail" src="/images/avatars/default.jpg" style="height:50px; width:50px" alt=""></div>
-                    <div class="col-md-2" style="padding: 0px"><img class="smallImage img-responsive img-thumbnail" src="/images/avatars/default.jpg" style="height:50px; width:50px" alt=""></div>
-                    <div class="col-md-2" style="padding: 0px"><img class="smallImage img-responsive img-thumbnail" src="/images/avatars/default.jpg" style="height:50px; width:50px" alt=""></div>
-                    <div class="col-md-2" style="padding: 0px"><img class="smallImage img-responsive img-thumbnail" src="/images/avatars/default.jpg" style="height:50px; width:50px" alt=""></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <span class="goodsId" style="display:none;">1234156</span>
-                <h3 class="goodsName">Apple MacBook Air </h3>
-                <p class="goodsDescribe">13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH)</p>
+                <h3 class="goodsName"> </h3>
+                <p class="goodsDescribe"></p>
                 <div style="background-color:#f5f5f5">
-                    <p style="color:red; font-size:x-large"><span style="color:black;font-size:medium" >价  格：</span>￥<span class="goodsPrice">6999</span></p>
-                    <p>促  销：<span class="discount">未打折</span></p>
+                    <p style="color:red; font-size:x-large"><span style="color:black;font-size:medium">价  格：</span>￥<span class="goodsPrice">6999</span></p>
+                    <p>促 销：<span class="discount">未打折</span></p>
                 </div>
                 <div>
                     <label for="">选择配置：</label>
                     <div class="attributes">
-                        <button class="attribute btn btn-default disabled" style="margin:5px;">
-                            <span class="attributeId" style="display:none"></span>
-                            <span class="attributeValue ">13.3英寸笔记本电脑</span>
-                            <span class="price" style="display:none"></span>
-                            <span class="inventory" style="display:none"></span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">first not disabled</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-                         <button class="attribute btn btn-default" style="margin:5px;">
-                            <span class="attributeId" style="display:none">123456</span>
-                            <span class="attributeValue">13.3英寸笔记本电脑</span>
-                        </button>
-
                     </div>
                 </div>
                 <div style="margin-top:20px">
@@ -193,12 +135,12 @@
             </div>
             <div class="col-md-2">
                 <div style="border:solid #f5f5f5">
-                    <a class="shop" href="">京东Apple产品专营店</a>
+                    <a class="shop" href=""></a>
                 </div>
 
             </div>
         </div>
-        </div>
+    </div>
     <hr>
     <div class="row" style="margin:0px;">
         <footer class="footer" style="text-align: center">
@@ -226,17 +168,17 @@
     <script type="text/javascript " src="../../style/js/public.js "></script>
     <script type="text/javascript " src="../../style/js/goods.js "></script>
     <script type="text/javascript ">
-            var userLoginStatus = "${sessionScope.userLoginStatus} ";
+        var userLoginStatus = "${sessionScope.userLoginStatus} ";
 
-            if(userLoginStatus.match("true") != null) {
-                $("#unlogin ").hide();
-                $(".avatar ").attr("src ","${sessionScope.userAvatarAddr} ")
-                $("#login ").show();
-            } else {
-                $("#login ").hide();
-                $("#unlogin ").show();
-            }
-        </script>
+        if (userLoginStatus.match("true") != null) {
+            $("#unlogin ").hide();
+            $(".avatar ").attr("src ", "${sessionScope.userAvatarAddr} ")
+            $("#login ").show();
+        } else {
+            $("#login ").hide();
+            $("#unlogin ").show();
+        }
+    </script>
 </body>
 
 </html>
