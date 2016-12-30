@@ -48,7 +48,7 @@ public class AddGoodsAction extends HttpServlet {
         SellerService service = new SellerServiceImpl();
         int goodsId = service.addNewGoods(goods);       // 添加新商品
 
-        // System.out.println(goodsId);
+        System.out.println(goodsId);
 
         service.addGoodsImage(request, goodsId);// 为新商品上传图片
 

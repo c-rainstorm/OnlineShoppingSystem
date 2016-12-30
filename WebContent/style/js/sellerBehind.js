@@ -258,7 +258,7 @@ $(document).ready(function() {
     $("#goodsAddBtn").click(function() {
         $("#goodsIntro").css("display", "none");
         cleanGoodsAdd();
-        //createCatetory();
+      //  createCategory();
         $("#goodsAddPage").css("display", "inline");
     })
 
@@ -277,9 +277,9 @@ $(document).ready(function() {
         removeError(parent);
     })
 
-    function createCatetory() {
+    function createCategory() {
         $.ajax({
-            url: "../../GetCatetory.action",
+            url: "../../getCategory.action",
             success: function(catetory) {
                 var curCatetory = $.parseJSON(catetory);
                 //建立一级分类
@@ -805,9 +805,9 @@ $(document).ready(function() {
                 curOrderInfo.find("#orderId").val(orderInfo.orderId);
                 curOrderInfo.find("#userId").val(orderInfo.userId);
                 curOrderInfo.find("#orderStatus").val(orderInfo.orderStatus);
-                curOrderInfo.find("#receiverName").val(orderInfo.receiver.name);
-                curOrderInfo.find("#receiverPhone").val(orderInfo.receiver.phone);
-                curOrderInfo.find("#receiverAddress").val(orderInfo.receiver.address);
+                curOrderInfo.find("#receiverName").val(orderInfo.receiver.receiverName);
+                curOrderInfo.find("#receiverPhone").val(orderInfo.receiver.receiverPhone);
+                curOrderInfo.find("#receiverAddress").val(orderInfo.receiver.receiverAddress);
                 curOrderInfo.find("#trackNum").val(orderInfo.trackingNumber);
                 curOrderInfo.find("#annotation").val(orderInfo.annotation);
                 curOrderInfo.find("#orderTime").val(orderInfo.orderTime);
@@ -815,17 +815,17 @@ $(document).ready(function() {
                 curOrderInfo.find("#payMethod").val(orderInfo.payMethod);
                 curOrderInfo.find("#total").val(orderInfo.total);
 
-                for(var i=0;i<goodsInOrder.length;i++) {
+                for(var i=0;i<orderInfo.goodsInOrder.length;i++) {
                     
                 	var order = createGoodsOrder();
                     $(".goodsInOrder").append(order);
                     var brief = $(".goodsOrder:last");
 
-                    brief.find(".goodsId").val(goodsInOrder[i].goods.goodsId);
-                    brief.find(".goodsName").val(goodsInOrder[i].goods.goodsName);
-                    brief.find(".attribute").val(goodsInOrder[i].attributeValue);
-                    brief.find(".goodsNum").val(goodsInOrder[i].goodsNum);
-                    brief.find(".cost").val(goodsInOrder[i].cost);
+                    brief.find("input:eq(0)").val(orderInfo.goodsInOrder[i].goods.goodsId);
+                    brief.find("input:eq(1)").val(orderInfo.goodsInOrder[i].goods.goodsName);
+                    brief.find("input:eq(2)").val(orderInfo.goodsInOrder[i].attributeValue);
+                    brief.find("input:eq(3)").val(orderInfo.goodsInOrder[i].goodsNum);
+                    brief.find("input:eq(4)").val(orderInfo.goodsInOrder[i].cost);
 
                     brief.slideDown();
                 }
@@ -834,19 +834,19 @@ $(document).ready(function() {
     }
 
     function createGoodsOrder() {
-        var GoodsOrder = "<div class=\"row goodsOrder\">" +
+        var GoodsOrder = "<br><div class=\"row goodsOrder\">" +
             "<div class=\"col-xs-2 col-sm-2 col-md-2\">" +
             "<input type=\"text\" name=\"goodsId\" class=\"form-control input-sm\">" +
             "</div>" +
             "<div class=\"col-xs-3 col-sm-3 col-md-3\">" +
             "<input type=\"text\" name=\"goodsName\" class=\"form-control input-sm\">" +
-            "</div>"
+            "</div>"+
         "<div class=\"col-xs-3 col-sm-3 col-md-3\">" +
         "<input type=\"text\" name=\"attribute\" class=\"form-control input-sm\">" +
-        "</div>"
+        "</div>"+
         "<div class=\"col-xs-2 col-sm-2 col-md-2\">" +
         "<input type=\"text\" name=\"goodsNum\" class=\"form-control input-sm\">" +
-        "</div>"
+        "</div>"+
         "<div class=\"col-xs-2 col-sm-2 col-md-2\">" +
         "<input type=\"text\" name=\"cost\" class=\"form-control input-sm\">" +
         "</div>" +

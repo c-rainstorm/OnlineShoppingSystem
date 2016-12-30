@@ -643,12 +643,12 @@ public class SellerDaoImpl implements SellerDao {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                receiver.setUserId(resultSet.getInt("user_id"));
-                receiver.setReceiverId(resultSet.getInt("receiver_id"));
+                receiver.setUserId(resultSet.getString("user_id"));
+                receiver.setReceiverId(resultSet.getString("receiver_id"));
                 receiver.setAddress(resultSet.getString("address"));
                 receiver.setName(resultSet.getString("name"));
                 receiver.setPhone(resultSet.getString("phone"));
-                receiver.setUsedTimes(resultSet.getInt("used_times"));
+                receiver.setUsedTimes(resultSet.getString("used_times"));
                 re.add(receiver);
             }
         } catch (SQLException e) {
@@ -661,7 +661,7 @@ public class SellerDaoImpl implements SellerDao {
 
     public ArrayList<GoodsInOrder> getGoodsInOrder(Long orderId) {
         ArrayList<GoodsInOrder> GIO = new ArrayList<GoodsInOrder>();
-        GoodsInOrder gio = new GoodsInOrder();
+        System.out.println(orderId);
 
         try {
             String sql = "select * from goods_in_order where order_id = ?;";
@@ -673,32 +673,33 @@ public class SellerDaoImpl implements SellerDao {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                gio.setOrderId(resultSet.getInt("order_id"));
+
+                GoodsInOrder gio = new GoodsInOrder();
+                gio.setOrderId(resultSet.getLong("order_id"));
                 gio.setAttributeId(resultSet.getInt("attribute_id"));
                 gio.setComment(resultSet.getString("comment"));
                 gio.setGoodsNum(resultSet.getInt("goods_num"));
 
-                {
-                    Goods goods = new Goods();
-                    int goodsId = resultSet.getInt("goods_id");
-                    goods.setGoodsId(goodsId);
-                    String sql1 = "select * from goods,category where goods_id = ? "
-                            + "and goods.category_id=category.category_id and goods.is_valid = true;";
-                    PreparedStatement ps1 = connection.prepareStatement(sql1);
-                    ps1.setInt(1, goodsId);
-                    ResultSet rs1 = ps1.executeQuery();
-                    rs1.next();
-                    goods.setGoodsName(resultSet.getString("goods_name"));
-                    goods.setCategoryId(resultSet.getInt("category_id"));
-                    goods.setFirstCategory(resultSet.getString("level_one"));
-                    goods.setSecondCategory(resultSet.getString("level_two"));
-                    goods.setShopId(resultSet.getInt("shop_id"));
-                    goods.setSales(resultSet.getInt("sales"));
-                    goods.setGoodsDescribe(resultSet.getString("goods_describe"));
-                    goods.setDiscountDeadline(resultSet.getString("discount_deadline"));
-                    goods.setDiscountRate(resultSet.getDouble("discount_rate"));
-                    gio.setGoods(goods);
-                }
+                Goods goods = new Goods();
+                int goodsId = resultSet.getInt("goods_id");
+                goods.setGoodsId(goodsId);
+                String sql1 = "select * from goods,category where goods_id = ? "
+                        + "and goods.category_id=category.category_id and goods.is_valid = true;";
+                PreparedStatement ps1 = connection.prepareStatement(sql1);
+                ps1.setInt(1, goodsId);
+                ResultSet rs1 = ps1.executeQuery();
+                rs1.next();
+                System.out.println(rs1.getString("goods_name"));
+                goods.setGoodsId(rs1.getInt("goods_id"));
+                goods.setGoodsName(rs1.getString("goods_name"));
+                goods.setCategoryId(rs1.getInt("category_id"));
+                goods.setFirstCategory(rs1.getString("level_one"));
+                goods.setSecondCategory(rs1.getString("level_two"));
+                goods.setShopId(rs1.getInt("shop_id"));
+                goods.setGoodsDescribe(rs1.getString("goods_describe"));
+                goods.setDiscountDeadline(rs1.getString("discount_deadline"));
+                goods.setDiscountRate(rs1.getDouble("discount_rate"));
+                gio.setGoods(goods);
 
                 int attributeId = resultSet.getInt("attribute_id");
                 String sql2 = "select * from goods_attribute where attribute_id = ?;";
@@ -852,8 +853,8 @@ public class SellerDaoImpl implements SellerDao {
             ps.setInt(1, receiverId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                receiver.setUserId(rs.getInt("user_id"));
-                receiver.setReceiverId(rs.getInt("receiver_id"));
+                receiver.setUserId(rs.getString("user_id"));
+                receiver.setReceiverId(rs.getString("receiver_id"));
                 receiver.setAddress(rs.getString("address"));
                 receiver.setName(rs.getString("name"));
                 receiver.setPhone(rs.getString("phone"));

@@ -1,11 +1,20 @@
 package com.groupnine.oss.user.entity;
 
 public class Receiver {
+    private String userId;
     private String receiverId;
     private String receiverName;
     private String receiverAddress;
     private String receiverPhone;
     private String usedTimes;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getReceiverId() {
         return receiverId;
