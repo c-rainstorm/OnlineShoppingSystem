@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.groupnine.oss.admin.entity.User;
 import com.groupnine.oss.admin.service.AdminService;
 import com.groupnine.oss.admin.service.AdminServiceImpl;
-import com.groupnine.oss.user.entity.User;
 
 @WebServlet("/GetUserInfo.action")
 public class GetUserInfoAction extends HttpServlet {

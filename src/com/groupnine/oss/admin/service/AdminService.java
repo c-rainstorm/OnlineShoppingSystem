@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.groupnine.oss.admin.entity.Admin;
 import com.groupnine.oss.admin.entity.Transaction;
+import com.groupnine.oss.admin.entity.User;
 import com.groupnine.oss.seller.entity.Shop;
-import com.groupnine.oss.user.entity.User;
 
 public interface AdminService {
 
