@@ -72,7 +72,7 @@
                                                 <th>事务编号</th>
                                                 <th>事务描述</th>
                                                 <th>提交时间</th>
-                                                <th>处理时间</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody id="todo_list">
@@ -95,7 +95,7 @@
                                                 <th>事务编号</th>
                                                 <th>事务描述</th>
                                                 <th>提交时间</th>
-                                                <th>处理时间</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody id="done_list">
@@ -122,7 +122,7 @@
                                                 <th>事务编号</th>
                                                 <th>事务描述</th>
                                                 <th>提交时间</th>
-                                                <th>处理时间</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody id="tran_list">
