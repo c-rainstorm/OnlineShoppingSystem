@@ -54,7 +54,7 @@
                                 <a class="glyphicon glyphicon-user" href="pages/home/user.jsp" target="_blank"> 个人中心</a>
                             </li>
                             <li>
-                                <a class="glyphicon glyphicon-shopping-cart" href="pages/core/shopping-cart.jsp" target="_blank"> 我的购物车</a>
+                                <a class="glyphicon glyphicon-shopping-cart" href="/shopping-cart.jsp" target="_blank"> 我的购物车</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -86,7 +86,7 @@
             </div>
         </div>
         <div class="col-md-1 col-md-offset-1 shoppingCart">
-            <a class="btn btn-block btn-success" href="pages/core/shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
+            <a class="btn btn-block btn-success" href="/shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
         </div>
     </div>
     <hr />

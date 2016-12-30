@@ -1,58 +1,49 @@
 package com.groupnine.oss.user.entity;
 
 public class Receiver {
-    private int receiverId;
-    private int userId;
-    private String name;
-    private String address;
-    private String phone;
-    private int usedTimes;
+    private String receiverId;
+    private String receiverName;
+    private String receiverAddress;
+    private String receiverPhone;
+    private String usedTimes;
 
-    public int getReceiverId() {
+    public String getReceiverId() {
         return receiverId;
     }
 
-    public void setReceiverId(int receiverId) {
+    public void setReceiverId(String receiverId) {
         this.receiverId = receiverId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getName() {
-        return name;
+        return receiverName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.receiverName = name;
     }
 
     public String getAddress() {
-        return address;
+        return receiverAddress;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.receiverAddress = address;
     }
 
     public String getPhone() {
-        return phone;
+        return receiverPhone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.receiverPhone = phone;
     }
 
-    public int getUsedTimes() {
+    public String getUsedTimes() {
         return usedTimes;
     }
 
-    public void setUsedTimes(int usedTimes) {
+    public void setUsedTimes(String usedTimes) {
         this.usedTimes = usedTimes;
     }
 

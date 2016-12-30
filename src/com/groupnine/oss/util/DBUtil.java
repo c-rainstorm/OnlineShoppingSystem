@@ -62,7 +62,8 @@ public class DBUtil {
         case "com.mysql.jdbc.Driver":
             builder.append("jdbc:mysql://"
                     + dbConfig.getHost() + ":" + dbConfig.getPort()
-                    + "/" + dbConfig.getName() + "?&useSSL=false");
+                    + "/" + dbConfig.getName()
+                    + "?&useSSL=false&useUnicode=yes&characterEncoding=UTF-8");
             break;
 
         default:

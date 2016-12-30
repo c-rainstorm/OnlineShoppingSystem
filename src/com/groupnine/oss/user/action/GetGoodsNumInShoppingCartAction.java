@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.user.entity.UserFullInfo;
+import com.google.gson.JsonObject;
 import com.groupnine.oss.user.service.UserService;
 
-@WebServlet("/getUserInfo.action")
-public final class GetUserInfoAction extends HttpServlet {
+@WebServlet("/getGoodsNumInShoppingCart.action")
+public class GetGoodsNumInShoppingCartAction extends HttpServlet {
 
-    public GetUserInfoAction() {
+    public GetGoodsNumInShoppingCartAction() {
         super();
     }
 
@@ -23,16 +23,24 @@ public final class GetUserInfoAction extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-        String uid = (String) request.getSession().getAttribute("userId");
-        // debug begin
-        // uid = request.getParameter("uid");
-        // debug end
+        /* 1. read parameter */
 
-        UserFullInfo info = UserService.getUserInfo(uid);
+        String loginStatus = (String) request.getSession().getAttribute("userLoginStatus");
+        String uid = (String) request.getSession().getAttribute("userId");
+
+        /* 2. invoke service.method */
+
+        String n = "0";
+        if (loginStatus.equals("true")) {
+            n = UserService.getGoodsNumInSC(uid);
+        }
+
+        /* 3. return JSON */
 
         Gson gson = new Gson();
-        gson.toJson(info, response.getWriter());
-
+        JsonObject result = new JsonObject();
+        result.addProperty("goodsNum", n);
+        gson.toJson(result, response.getWriter());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

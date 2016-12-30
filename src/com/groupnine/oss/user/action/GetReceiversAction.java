@@ -1,6 +1,7 @@
 package com.groupnine.oss.user.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.user.entity.UserFullInfo;
+import com.groupnine.oss.user.entity.Receiver;
 import com.groupnine.oss.user.service.UserService;
 
-@WebServlet("/getUserInfo.action")
-public final class GetUserInfoAction extends HttpServlet {
+@WebServlet("/getReceivers.action")
+public final class GetReceiversAction extends HttpServlet {
 
-    public GetUserInfoAction() {
+    public GetReceiversAction() {
         super();
     }
 
@@ -24,14 +25,15 @@ public final class GetUserInfoAction extends HttpServlet {
         response.setContentType("application/json");
 
         String uid = (String) request.getSession().getAttribute("userId");
+
         // debug begin
         // uid = request.getParameter("uid");
         // debug end
 
-        UserFullInfo info = UserService.getUserInfo(uid);
-
+        ArrayList<Receiver> receivers = UserService.getReceivers(uid);
+        
         Gson gson = new Gson();
-        gson.toJson(info, response.getWriter());
+        gson.toJson(receivers, response.getWriter());
 
     }
 

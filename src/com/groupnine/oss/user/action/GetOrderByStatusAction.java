@@ -1,6 +1,7 @@
 package com.groupnine.oss.user.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.user.entity.UserFullInfo;
+import com.groupnine.oss.user.entity.OrderBrief;
 import com.groupnine.oss.user.service.UserService;
 
-@WebServlet("/getUserInfo.action")
-public final class GetUserInfoAction extends HttpServlet {
+@WebServlet("/getOrderByStatus.action")
+public class GetOrderByStatusAction extends HttpServlet {
 
-    public GetUserInfoAction() {
+    public GetOrderByStatusAction() {
         super();
     }
 
@@ -23,16 +24,25 @@ public final class GetUserInfoAction extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-        String uid = (String) request.getSession().getAttribute("userId");
-        // debug begin
-        // uid = request.getParameter("uid");
-        // debug end
+        /* 1. read parameters */
 
-        UserFullInfo info = UserService.getUserInfo(uid);
+        String uid = (String) request.getSession().getAttribute("userId");
+        String orderStatus = request.getParameter("orderStatus");
+        String nPerPage = request.getParameter("maxNumInOnePage");
+        String pageNum = request.getParameter("pageNum");
+
+        // -- debug begin
+        // uid = request.getParameter("uid");
+        // -- debug end
+
+        /* 2. invoke servie */
+
+        List<OrderBrief> orders = UserService.getOrderByStatus(uid, orderStatus, nPerPage, pageNum);
+
+        /* 3. return JSON */
 
         Gson gson = new Gson();
-        gson.toJson(info, response.getWriter());
-
+        gson.toJson(orders, response.getWriter());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

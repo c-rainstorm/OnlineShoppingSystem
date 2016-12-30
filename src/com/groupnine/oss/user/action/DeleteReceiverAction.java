@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.user.entity.UserFullInfo;
+import com.groupnine.oss.user.entity.FalseResult;
+import com.groupnine.oss.user.entity.TrueResult;
 import com.groupnine.oss.user.service.UserService;
 
-@WebServlet("/getUserInfo.action")
-public final class GetUserInfoAction extends HttpServlet {
+@WebServlet("/deleteReceiver.action")
+public class DeleteReceiverAction extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-    public GetUserInfoAction() {
+    public DeleteReceiverAction() {
         super();
     }
 
@@ -23,15 +25,22 @@ public final class GetUserInfoAction extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-        String uid = (String) request.getSession().getAttribute("userId");
-        // debug begin
-        // uid = request.getParameter("uid");
-        // debug end
+        /* 1. read parameters */
 
-        UserFullInfo info = UserService.getUserInfo(uid);
+        String rid = request.getParameter("receiverId");
 
+        /* 2. invoke service */
+
+        boolean deleted = false;
+        if (rid != null) {
+            deleted = UserService.deleteReceiver(rid);
+        }
+
+        /* 3 JSON */
+
+        Object result = deleted ? new TrueResult() : new FalseResult();
         Gson gson = new Gson();
-        gson.toJson(info, response.getWriter());
+        gson.toJson(result, response.getWriter());
 
     }
 

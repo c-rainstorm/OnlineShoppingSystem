@@ -6,16 +6,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>商品列表</title>
     <link rel="icon" href="/images/icon.jpg" />
-    <link rel="stylesheet" href="style/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="style/css/sticky-footer.css" />
-    <link rel="stylesheet" href="style/css/carousel.css" />
-    <link rel="stylesheet" href="style/css/dropdown.css" />
-    <title>首页</title>
+    <link rel="stylesheet" href="../../style/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../style/css/sticky-footer.css" />
 </head>
 
 <body>
-
+    <span class="url" style="display:none;"></span>
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
@@ -42,10 +40,10 @@
                 </ul>
                 <ul id="unlogin" class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="pages/login/user.jsp" target="_blank">登录</a>
+                        <a href="../login/user.jsp" target="_blank">登录</a>
                     </li>
                     <li>
-                        <a href="pages/user-signup.jsp" target="_blank">注册</a>
+                        <a href="../user-signup.jsp" target="_blank">注册</a>
                     </li>
                 </ul>
                 <ul id="login" class="nav navbar-nav navbar-right">
@@ -57,7 +55,7 @@
                                 <a class="glyphicon glyphicon-user" href="pages/home/user.jsp" target="_blank"> 个人中心</a>
                             </li>
                             <li>
-                                <a class="glyphicon glyphicon-shopping-cart" href="pages/core/shopping-cart.jsp" target="_blank"> 我的购物车</a>
+                                <a class="glyphicon glyphicon-shopping-cart" href="/shopping-cart.jsp" target="_blank"> 我的购物车</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -89,99 +87,51 @@
             </div>
         </div>
         <div class="col-md-1 col-md-offset-1 shoppingCart">
-            <a class="btn btn-block btn-success" href="pages/core/shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
+            <a class="btn btn-block btn-success" href="/shopping-cart.jsp" target="_blank" style="margin-top: 11px;"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a>
         </div>
     </div>
     <hr />
 
-    <!--
-        	作者：rainstorm.me@outlook.com
-        	时间：2016-12-02
-        	描述：分类导航 + 轮播
-        -->
-    <div class="row" style="margin:0px;">
-        <div class="col-md-2 col-md-offset-2">
-            <!--<div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-                    请选择分类<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu category-root">
-                    </ul>
-                </div>-->
-            <div class="VerticalMenu category-root">
-
-            </div>
-
-        </div>
-        <div class="col-md-6">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img class="first-slide" src="" alt="First slide">
-                        <div class="container">
-                            <div class="carousel-caption">
-                                <p>
-                                    <a target="_blank" class="btn btn-lg btn-primary" href="#" role="button">查看详情</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img class="second-slide" src="" alt="Second slide">
-                        <div class="container">
-                            <div class="carousel-caption">
-                                <p>
-                                    <a target="_blank" class="btn btn-lg btn-primary" href="#" role="button">查看详情</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img class="third-slide" src="" alt="Third slide">
-                        <div class="container">
-                            <div class="carousel-caption">
-                                <p>
-                                    <a target="_blank" class="btn btn-lg btn-primary" href="#" role="button">查看详情</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-            <!-- /.carousel -->
-        </div>
-    </div>
-
-    <hr />
-    <div class="col-lg-8 col-lg-offset-2">
-        <h3>1L
-            <a target="_blank" class="levelOneName" href="#"></a>
-            </span>
-        </h3>
-        <div class="row show">
-
+    <div class="container">
+        <div class="row">
+            <ol class="breadcrumb byCategory">
+                <li><a class="levelOne" href="#">Home</a></li>
+                <li><a class="levelTwo" href="#">Library</a></li>
+            </ol>
+            <ol class="breadcrumb bykeyword">
+                <li>全部商品</li>
+                <li><span>"</span><span class="keyword"></span><span>"</span></li>
+            </ol>
         </div>
         <div class="row">
-            <div class="col-lg-2 col-lg-offset-10">
-                <p>
-                    <span><a target="_blank" class="levelOneName" href="">查看更多</a> >></span>
-                </p>
+            <div class="levelTwoList col-md-1">
+
+            </div>
+            <div class="col-md-11">
+                <div class="btn-group">
+                    <button class="btn btn-default sales">销量</button>
+                    <button class="btn btn-default sortByPrice">价格<span class="glyphicon glyphicon-arrow-down"></span></button>
+                </div>
+                <hr>
+                <div class="row goodsList">
+
+
+                </div>
+                <hr>
+                <div class="row">
+                    <ul class="pager">
+                        <li class="previous"><a href="javascript:;">Previous</a></li>
+                        <li class="pageNum">1</li>
+                        <li class="next"><a href="javascript:;">Next</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <hr />
 
+        <hr>
     </div>
+
+
     <div class="row" style="margin:0px;">
         <footer class="footer" style="text-align: center">
             <div class="container">
@@ -201,17 +151,18 @@
         </footer>
     </div>
 
-    <script type="text/javascript " src="style/js/jquery.min.js "></script>
-    <script type="text/javascript " src="style/js/bootstrap.min.js "></script>
-    <script type="text/javascript " src="style/js/dropdown.js "></script>
-    <script type="text/javascript " src="style/js/public.js "></script>
-    <script type="text/javascript " src="style/js/index.js "></script>
+
+    <script type="text/javascript " src="../../style/js/jquery.min.js "></script>
+    <script type="text/javascript " src="../../style/js/bootstrap.min.js "></script>
+    <script type="text/javascript " src="../../style/js/public.js "></script>
+    <script type="text/javascript " src="../../style/js/url.min.js "></script>
+    <script type="text/javascript " src="../../style/js/goodsList.js "></script>
     <script type="text/javascript ">
-            var userLoginStatus = "${sessionScope.userLoginStatus}";
+            var userLoginStatus = "${sessionScope.userLoginStatus} ";
 
             if(userLoginStatus.match("true") != null) {
                 $("#unlogin ").hide();
-                $(".avatar ").attr("src","${sessionScope.userAvatarAddr}")
+                $(".avatar ").attr("src ","${sessionScope.userAvatarAddr} ")
                 $("#login ").show();
             } else {
                 $("#login ").hide();

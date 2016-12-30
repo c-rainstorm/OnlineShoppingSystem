@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.user.entity.UserFullInfo;
+import com.groupnine.oss.user.entity.FalseResult;
+import com.groupnine.oss.user.entity.TrueResult;
 import com.groupnine.oss.user.service.UserService;
 
-@WebServlet("/getUserInfo.action")
-public final class GetUserInfoAction extends HttpServlet {
+@WebServlet("/updateOrderStatus.action")
+public class UpdateOrderStatusAction extends HttpServlet {
 
-    public GetUserInfoAction() {
+    public UpdateOrderStatusAction() {
         super();
     }
 
@@ -23,15 +24,20 @@ public final class GetUserInfoAction extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-        String uid = (String) request.getSession().getAttribute("userId");
-        // debug begin
-        // uid = request.getParameter("uid");
-        // debug end
+        /* 1. read parameters */
 
-        UserFullInfo info = UserService.getUserInfo(uid);
+        String oid = request.getParameter("orderId");
+        String newStat = request.getParameter("orderStatus");
 
+        /* 2. invoke service */
+
+        boolean success = UserService.updateOrderStatus(oid, newStat);
+
+        /* 3. return JSON */
+
+        Object result = success ? new TrueResult() : new FalseResult();
         Gson gson = new Gson();
-        gson.toJson(info, response.getWriter());
+        gson.toJson(result, response.getWriter());
 
     }
 

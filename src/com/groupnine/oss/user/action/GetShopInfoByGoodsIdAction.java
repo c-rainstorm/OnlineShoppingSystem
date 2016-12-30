@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.groupnine.oss.user.entity.UserFullInfo;
+import com.groupnine.oss.user.entity.ShopBrief;
 import com.groupnine.oss.user.service.UserService;
 
-@WebServlet("/getUserInfo.action")
-public final class GetUserInfoAction extends HttpServlet {
+@WebServlet("/getShopInfoByGoodsId.action")
+public class GetShopInfoByGoodsIdAction extends HttpServlet {
 
-    public GetUserInfoAction() {
+    public GetShopInfoByGoodsIdAction() {
         super();
     }
 
@@ -23,16 +23,20 @@ public final class GetUserInfoAction extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-        String uid = (String) request.getSession().getAttribute("userId");
-        // debug begin
-        // uid = request.getParameter("uid");
-        // debug end
+        /* 1. read parameters */
 
-        UserFullInfo info = UserService.getUserInfo(uid);
+        String goodsId = request.getParameter("goodsId");
+
+        /* 2. invoke service.method */
+        ShopBrief shopInfo = null;
+        if (goodsId != null) {
+            shopInfo = UserService.getShopBriefInfoByGoodsId(goodsId);
+        }
+
+        /* 3. return JSON */
 
         Gson gson = new Gson();
-        gson.toJson(info, response.getWriter());
-
+        gson.toJson(shopInfo, response.getWriter());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
