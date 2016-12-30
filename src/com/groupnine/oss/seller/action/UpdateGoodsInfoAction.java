@@ -41,8 +41,8 @@ public class UpdateGoodsInfoAction extends HttpServlet {
 
         System.out.println("gId" + goodsId);
         // System.out.println(goods.getGoodsName());
-        String dd = request.getParameter("discountDeadline2");
-        System.out.println("dd" + dd);
+        // String dd = request.getParameter("discountDeadline2");
+        // System.out.println("dd" + dd);
         // Timestamp ts = new Timestamp(System.currentTimeMillis());
         // String tsStr = dd + " 00:00:00";
         // try {

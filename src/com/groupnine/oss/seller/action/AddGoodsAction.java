@@ -42,6 +42,10 @@ public class AddGoodsAction extends HttpServlet {
 
         // goods.setFirstCategory(request.getParameter("firstCategory"));
         // goods.setSecondCategory(request.getParameter("secondCategory"));
+
+        System.out.println(request.getParameter("firstCategory"));
+        System.out.println(request.getParameter("secondCategory"));
+
         goods.setFirstCategory("电器");
         goods.setSecondCategory("手机");
 

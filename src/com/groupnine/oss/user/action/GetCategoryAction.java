@@ -25,7 +25,7 @@ public class GetCategoryAction extends HttpServlet {
         response.setContentType("application/json");
 
         /* 1. invoke service */
-
+        System.out.println("entered");
         ArrayList<Category> cs = UserService.getCategories();
 
         /* 2. return JSON */

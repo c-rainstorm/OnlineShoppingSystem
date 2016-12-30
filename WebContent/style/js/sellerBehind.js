@@ -258,7 +258,7 @@ $(document).ready(function() {
     $("#goodsAddBtn").click(function() {
         $("#goodsIntro").css("display", "none");
         cleanGoodsAdd();
-      //  createCategory();
+        createCategory();
         $("#goodsAddPage").css("display", "inline");
     })
 
@@ -279,39 +279,50 @@ $(document).ready(function() {
 
     function createCategory() {
         $.ajax({
+        	type: "get",
             url: "../../getCategory.action",
-            success: function(catetory) {
-                var curCatetory = $.parseJSON(catetory);
+            
+            success: function(category) {
+                var curCategory = category;
                 //建立一级分类
                 var option = "<option>请选择一级分类</option>";
-                for(var i = 0; i < curCatetory.length; i++) {
-                    option += "<option value='" + curCatetory[i].name + "'>" + curCatetory[i].name + "</option>";
+                for(var i = 0; i < curCategory.length; i++) {
+                    option += "<option value='" + curCategory[i].name + "'>" + curCategory[i].name + "</option>";
                 }
-                $("#FirstCatetoryOption").append(option);
-                //建立二级分类
-                $("#FirstCatetoryOption").change(function(curCatetory) {
-
-                    var FirstId = $(this).val();
-
-                    if(FirstId != "") {
-                        $("#SecondCategoryOption").empty();
-                        for(var i = 0; i < curCatetory.length; i++) {
-                            if(curCatetory[i].name = FirstId) {
-                                var SecondId = curCatetory[i].levelTwo;
-                            }
-                        }
-                        for(var i = 0; i < SecondId.length; i++) {
-                            option += "<option value='" + SecondId[i] + "'>" + SecondId[i] + "</option>";
-                        }
-                        $("#SecondCatetoryOption").append(option);
-                    }
-
-                });
+                $("#FirstCategoryOption").append(option);
 
             }
+            
         });
     }
+    
+    //建立二级分类
+    $("#FirstCategoryOption").change(function() {
 
+        var FirstId = $(this).find(":selected").val();
+        var option;
+        $.ajax({
+        	type: "get",
+            url: "../../getCategory.action",
+            success: function(category) {
+            	 var curCategory = category;
+            	 if(FirstId != "") {
+		            $("#SecondCategoryOption").empty();
+		            for(var i = 0; i < curCategory.length; i++) {
+		                if(curCategory[i].name = FirstId) {
+		                    var SecondId = curCategory[i].levelTwo;
+		                    for(var i = 0; i < SecondId.length; i++) {
+				                option += "<option value='" + SecondId[i] + "'>" + SecondId[i] + "</option>";
+				            }
+		                }
+		            }
+		            
+		            $("#SecondCategoryOption").append(option);
+            	 }
+          }
+
+    });
+    })
     function createGoodsAttr() {
         var newGoodsAttr = "<div class=\"row goodsAttr\" style=\"display:inline\">" +
             "<div class=\"col-xs-3 col-sm-3 col-md-3\">" +
@@ -413,10 +424,10 @@ $(document).ready(function() {
         if($("#goodsAddPage").find(".goodsAttr").length == 0) {
             alert("请至少创建一个属性！");
         } else {
-            var firstCatetoryContent = $("#firstCatetoryOption").find("[selected='selected']").val();
-            $("#firstCatetory").val(firstCatetoryContent);
-            var secondCatetoryContent = $("#secondCatetoryOption").find("[selected='selected']").val();
-            $("#secondCatetory").val(secondCatetoryContent);
+            var firstCategoryContent = $("#FirstCategoryOption").find("[selected='selected']").val();
+            $("#firstCategory").val(firstCategoryContent);
+            var secondCategoryContent = $("#SecondCategoryOption").find("[selected='selected']").val();
+            $("#secondCategory").val(secondCategoryContent);
 
             var attributes = new Array();
             var length = $("#goodsAddPage").find(".goodsAttr").length;
@@ -488,7 +499,7 @@ $(document).ready(function() {
                 curGoodsInfo.find("#goodsDescribe1").val(goodsInfo.goodsDescribe);
 
                 for(var i = 0; i < goodsInfo.goodsImagesUrl.length; i++) {
-                    var img = "<img src'" + goodsInfo.goodsImagesUrl[i] + "' alt='商品图片' />";
+                    var img = "<br><img src'" + goodsInfo.goodsImagesUrl[i] + "' alt='商品图片' />";
                     $("#goodsManageForm1").find(".goodsImages").append(img);
                 }
 
@@ -994,5 +1005,5 @@ $(document).ready(function() {
             });
         }
     })
-
+    
 })

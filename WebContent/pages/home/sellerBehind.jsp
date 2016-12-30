@@ -307,7 +307,7 @@
                                             <div class="form-group has-info">
                                                 <br />
                                                 <h4>一级分类</h4><br />
-                                                <select name="Category" id="firstCategoryOption" class="form-control">
+                                                <select name="Category" id="FirstCategoryOption" class="form-control">
                                                 </select>
                                             </div>
                                         </div>
@@ -316,7 +316,7 @@
                                             <div class="form-group has-info">
                                                 <br />
                                                 <h4>二级分类</h4><br />
-                                                <select name="Category" id="secondCategoryOption" class="form-control">
+                                                <select name="Category" id="SecondCategoryOption" class="form-control">
                                                 </select>
                                             </div>
                                         </div>

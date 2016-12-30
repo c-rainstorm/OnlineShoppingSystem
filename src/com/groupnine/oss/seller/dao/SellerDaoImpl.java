@@ -441,7 +441,7 @@ public class SellerDaoImpl implements SellerDao {
 
         try {
             String sql = "select * from goods_image where goods_id = ?"
-                    + "order by image_id DESC "
+                    + " order by image_id DESC "
                     + "limit 0,6;";
 
             connection = DBUtil.getConnection();
