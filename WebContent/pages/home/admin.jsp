@@ -178,7 +178,7 @@
                         <div class="col-md-6">
 
                             <!—一组按钮控件-->
-                            <a href="../home/sellerBehind.jsp"><button type="button" class="btn btn-lg btn-primary">添加店铺</button></a>
+                            <a href="../home/sellerSignup.jsp"><button type="button" class="btn btn-lg btn-primary">添加店铺</button></a>
                             <button type="button" class="btn btn-lg btn-success">查找店铺</button>
 
                             <div id="aboutshop">
