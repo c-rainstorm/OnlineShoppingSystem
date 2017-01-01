@@ -16,6 +16,7 @@ public class UserSessionInfo {
             String shopId) {
         this.userId = id;
         this.nickname = nickname;
+        this.avatarAddr = addr;
         this.shopHasOpend = shopHasOpend;
         this.shopId = shopId;
     }

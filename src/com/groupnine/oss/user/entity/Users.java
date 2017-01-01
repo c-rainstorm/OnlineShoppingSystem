@@ -1,7 +1,5 @@
 package com.groupnine.oss.user.entity;
 
-import java.sql.Date;
-
 public class Users {
 
     public static boolean isUsernameWellFormed(String name) {
@@ -32,8 +30,8 @@ public class Users {
                 (sex.trim().equals("男") || sex.trim().equals("女") || sex.trim().equals("保密"));
     }
 
-    public static boolean isBirthdayWellFormed(Date birthday) {
-        return false;
+    public static boolean isBirthdayWellFormed(String birthday) {
+        return true;
         // TODO
     }
 }

@@ -1,0 +1,9 @@
+.summary,
+.receiverInfo{
+    border-style:  solid;
+    border-color: #DCDCDC;
+    border-radius: 15px;
+    padding-left:  20px;
+    padding-right: 20px;
+    margin: 10px;
+}

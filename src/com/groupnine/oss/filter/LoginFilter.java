@@ -27,11 +27,14 @@ public final class LoginFilter implements Filter {
         HttpSession session = request2.getSession();
         if (session.getAttribute("userLoginStatus") == null) {
             session.setAttribute("userLoginStatus", "setAttr");
-            session.setAttribute("userId", "..");
+            // session.setAttribute("userId", "..");
+            session.setAttribute("userId", "1");
             session.setAttribute("nickname", "..");
             session.setAttribute("userAvatarAddr", "/images/avatars/default.jpg");
-            session.setAttribute("shopId", "..");
+            // session.setAttribute("shopId", "..");
+            session.setAttribute("shopId", "1");
             session.setAttribute("shopHasOpend", "false");
+
         }
         if (session.getAttribute("adminLoginStatus") == null) {
             session.setAttribute("adminLoginStatus", "setAttr");

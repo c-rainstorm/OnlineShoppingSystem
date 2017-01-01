@@ -1,0 +1,53 @@
+﻿.VerticalMenu {
+  height: 100%;
+  width: 200px;
+  cursor: pointer;
+}
+.VerticalMenu > div {
+  width: 200px;
+  float: left;
+}
+.VerticalMenu > div > div:first-child {
+  text-align: center;
+  height: 40px;
+  background-color: white;
+  line-height: 40px;
+  padding-right: 10px;
+  border-bottom: 1px solid  #cdb0b0;
+  /*transition: background-color 0.4s linear;*/
+}
+.VerticalMenu > div > div:first-child:hover {
+  background-color: #c0c0c0;
+}
+.VerticalMenu > div > div:first-child > i:last-child {
+  line-height: 40px;
+  float: right;
+  transform: rotate(0deg);
+  /*transition: transform 0.4s linear;*/
+}
+.VerticalMenu > div > div:last-child {
+  width: 200px;
+  display: none;
+}
+.VerticalMenu > div > div:last-child > div {
+  background-color: white;
+  transition: background-color 0.1s linear;
+  text-align: center;
+  line-height: 40px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.VerticalMenu > div > div:last-child > div:hover {
+  background-color: #c0c0c0!important;
+}
+.VerticalMenu > div:first-child > div:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.VerticalMenu > div:last-child > div:first-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.VerticalMenu > div:last-child::after {
+  display: block;
+  clear: both;
+}

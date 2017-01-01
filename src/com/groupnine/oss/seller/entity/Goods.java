@@ -1,18 +1,20 @@
 package com.groupnine.oss.seller.entity;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Goods {
     private int goodsId;
     private int categoryId;
+    private String firstCategory;
+    private String secondCategory;
     private int shopId;
     private String goodsName;
     private String goodsDescribe;
+    private ArrayList<String> goodsImagesUrl;
     private ArrayList<GoodsImage> goodsImages;
     private ArrayList<GoodsAttr> goodsAttrs;
     private int sales;
-    private Timestamp discountDeadline;
+    private String discountDeadline;
     private double discountRate;
 
     public int getGoodsId() {
@@ -29,6 +31,22 @@ public class Goods {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getFirstCategory() {
+        return firstCategory;
+    }
+
+    public void setFirstCategory(String firstCategory) {
+        this.firstCategory = firstCategory;
+    }
+
+    public String getSecondCategory() {
+        return secondCategory;
+    }
+
+    public void setSecondCategory(String secondCategory) {
+        this.secondCategory = secondCategory;
     }
 
     public int getShopId() {
@@ -55,6 +73,14 @@ public class Goods {
         this.goodsDescribe = goodsDescribe;
     }
 
+    public ArrayList<String> getGoodsImagesUrl() {
+        return goodsImagesUrl;
+    }
+
+    public void setGoodsImagesUrl(ArrayList<String> goodsImagesUrl) {
+        this.goodsImagesUrl = goodsImagesUrl;
+    }
+
     public ArrayList<GoodsImage> getGoodsImages() {
         return goodsImages;
     }
@@ -79,11 +105,11 @@ public class Goods {
         this.sales = sales;
     }
 
-    public Timestamp getDiscountDeadline() {
+    public String getDiscountDeadline() {
         return discountDeadline;
     }
 
-    public void setDiscountDeadline(Timestamp discountDeadline) {
+    public void setDiscountDeadline(String discountDeadline) {
         this.discountDeadline = discountDeadline;
     }
 

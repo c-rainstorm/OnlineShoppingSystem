@@ -1,16 +1,12 @@
 package com.groupnine.oss.user.entity;
 
-import java.sql.Date;
-
 import com.groupnine.oss.pub.entity.MalformedException;
 
 public class UserFullInfo extends UserLoginInfo {
-    private int userId;
-    private String registrationId;
     private String nickname;
     private String avatar = "images/avatars/default.jpg";
     private String sex;
-    private Date birthday;
+    private String birthday;
 
     // Constructor
     // 注意: 没有提供从 UserLoginInfo 直接构造 UserFullInfo，因为：
@@ -18,24 +14,6 @@ public class UserFullInfo extends UserLoginInfo {
 
     public UserFullInfo() {
         super();
-    }
-
-    // Getters and Setters
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getRegistrationId() {
-        return registrationId;
-    }
-
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
     }
 
     public String getNickname() {
@@ -61,22 +39,16 @@ public class UserFullInfo extends UserLoginInfo {
         return sex;
     }
 
-    public void setSex(String sex) throws MalformedException {
-        if (Users.isSexWellFormed(sex)) {
-            this.sex = sex;
-        } else
-            throw new MalformedException("Malformed sex");
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) throws MalformedException {
-        if (Users.isBirthdayWellFormed(birthday)) {
-            this.birthday = birthday;
-        } else
-            throw new MalformedException("Malformed birthday");
+    public void setBirthday(String birthday) throws MalformedException {
+        this.birthday = birthday;
     }
 
 }
